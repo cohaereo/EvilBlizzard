@@ -10,8 +10,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="protobuf-net" Version="3.2.30"/>
-        <PackageReference Include="WebSocketSharp" Version="1.0.3-rc11"/>
+        <PackageReference Include="protobuf-net" Version="3.2.30" />
     </ItemGroup>
 
 </Project>
