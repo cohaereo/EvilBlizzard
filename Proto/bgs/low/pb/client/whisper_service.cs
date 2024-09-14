@@ -28,8 +28,8 @@ namespace bgs.protocol.whisper.v1
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
             => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
 
-        [global::ProtoBuf.ProtoMember(1, Name = @"view")]
-        public global::System.Collections.Generic.List<WhisperView> Views { get; } = new global::System.Collections.Generic.List<WhisperView>();
+        [global::ProtoBuf.ProtoMember(1, Name = @"marker")]
+        public global::System.Collections.Generic.List<ViewMarker> Markers { get; } = new global::System.Collections.Generic.List<ViewMarker>();
 
     }
 
@@ -61,18 +61,6 @@ namespace bgs.protocol.whisper.v1
     }
 
     [global::ProtoBuf.ProtoContract()]
-    public partial class SendWhisperResponse : global::ProtoBuf.IExtensible
-    {
-        private global::ProtoBuf.IExtension __pbn__extensionData;
-        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
-            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
-
-        [global::ProtoBuf.ProtoMember(1, Name = @"whisper")]
-        public Whisper Whisper { get; set; }
-
-    }
-
-    [global::ProtoBuf.ProtoContract()]
     public partial class SetTypingIndicatorRequest : global::ProtoBuf.IExtensible
     {
         private global::ProtoBuf.IExtension __pbn__extensionData;
@@ -86,10 +74,10 @@ namespace bgs.protocol.whisper.v1
         public global::bgs.protocol.account.v1.AccountId TargetId { get; set; }
 
         [global::ProtoBuf.ProtoMember(3, Name = @"action")]
-        [global::System.ComponentModel.DefaultValue(global::bgs.protocol.TypingIndicator.TypingStart)]
+        [global::System.ComponentModel.DefaultValue(global::bgs.protocol.TypingIndicator.Start)]
         public global::bgs.protocol.TypingIndicator Action
         {
-            get => __pbn__Action ?? global::bgs.protocol.TypingIndicator.TypingStart;
+            get => __pbn__Action ?? global::bgs.protocol.TypingIndicator.Start;
             set => __pbn__Action = value;
         }
         public bool ShouldSerializeAction() => __pbn__Action != null;
@@ -114,22 +102,7 @@ namespace bgs.protocol.whisper.v1
     }
 
     [global::ProtoBuf.ProtoContract()]
-    public partial class AdvanceClearTimeRequest : global::ProtoBuf.IExtensible
-    {
-        private global::ProtoBuf.IExtension __pbn__extensionData;
-        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
-            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
-
-        [global::ProtoBuf.ProtoMember(1, Name = @"agent_id")]
-        public global::bgs.protocol.account.v1.AccountId AgentId { get; set; }
-
-        [global::ProtoBuf.ProtoMember(2, Name = @"target_id")]
-        public global::bgs.protocol.account.v1.AccountId TargetId { get; set; }
-
-    }
-
-    [global::ProtoBuf.ProtoContract()]
-    public partial class GetWhisperMessagesRequest : global::ProtoBuf.IExtensible
+    public partial class GetWhispersRequest : global::ProtoBuf.IExtensible
     {
         private global::ProtoBuf.IExtension __pbn__extensionData;
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
@@ -142,12 +115,12 @@ namespace bgs.protocol.whisper.v1
         public global::bgs.protocol.account.v1.AccountId TargetId { get; set; }
 
         [global::ProtoBuf.ProtoMember(3, Name = @"options")]
-        public global::bgs.protocol.GetEventOptions Options { get; set; }
+        public GetOptions Options { get; set; }
 
     }
 
     [global::ProtoBuf.ProtoContract()]
-    public partial class GetWhisperMessagesResponse : global::ProtoBuf.IExtensible
+    public partial class GetWhispersResponse : global::ProtoBuf.IExtensible
     {
         private global::ProtoBuf.IExtension __pbn__extensionData;
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
@@ -156,15 +129,15 @@ namespace bgs.protocol.whisper.v1
         [global::ProtoBuf.ProtoMember(1, Name = @"whisper")]
         public global::System.Collections.Generic.List<Whisper> Whispers { get; } = new global::System.Collections.Generic.List<Whisper>();
 
-        [global::ProtoBuf.ProtoMember(2, Name = @"continuation")]
-        public ulong Continuation
+        [global::ProtoBuf.ProtoMember(2, Name = @"continue_time")]
+        public ulong ContinueTime
         {
-            get => __pbn__Continuation.GetValueOrDefault();
-            set => __pbn__Continuation = value;
+            get => __pbn__ContinueTime.GetValueOrDefault();
+            set => __pbn__ContinueTime = value;
         }
-        public bool ShouldSerializeContinuation() => __pbn__Continuation != null;
-        public void ResetContinuation() => __pbn__Continuation = null;
-        private ulong? __pbn__Continuation;
+        public bool ShouldSerializeContinueTime() => __pbn__ContinueTime != null;
+        public void ResetContinueTime() => __pbn__ContinueTime = null;
+        private ulong? __pbn__ContinueTime;
 
     }
 

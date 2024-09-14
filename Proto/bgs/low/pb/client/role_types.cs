@@ -25,7 +25,7 @@ namespace bgs.protocol
         [global::ProtoBuf.ProtoMember(3, Name = @"privilege")]
         public global::System.Collections.Generic.List<string> Privileges { get; } = new global::System.Collections.Generic.List<string>();
 
-        [global::ProtoBuf.ProtoMember(4, Name = @"assignable_role", IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(4, Name = @"assignable_role")]
         public uint[] AssignableRoles { get; set; }
 
         [global::ProtoBuf.ProtoMember(5, Name = @"required")]
@@ -58,10 +58,10 @@ namespace bgs.protocol
         public void ResetRelegationRole() => __pbn__RelegationRole = null;
         private uint? __pbn__RelegationRole;
 
-        [global::ProtoBuf.ProtoMember(9, Name = @"kickable_role", IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(9, Name = @"kickable_role")]
         public uint[] KickableRoles { get; set; }
 
-        [global::ProtoBuf.ProtoMember(10, Name = @"removable_role", IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(10, Name = @"removable_role")]
         public uint[] RemovableRoles { get; set; }
 
     }
@@ -84,7 +84,7 @@ namespace bgs.protocol
         public void ResetName() => __pbn__Name = null;
         private string __pbn__Name;
 
-        [global::ProtoBuf.ProtoMember(4, Name = @"assignable_role", IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(4, Name = @"assignable_role")]
         public uint[] AssignableRoles { get; set; }
 
         [global::ProtoBuf.ProtoMember(5, Name = @"required")]
@@ -117,14 +117,11 @@ namespace bgs.protocol
         public void ResetRelegationRole() => __pbn__RelegationRole = null;
         private uint? __pbn__RelegationRole;
 
-        [global::ProtoBuf.ProtoMember(9, Name = @"kickable_role", IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(9, Name = @"kickable_role")]
         public uint[] KickableRoles { get; set; }
 
-        [global::ProtoBuf.ProtoMember(10, Name = @"removable_role", IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(10, Name = @"removable_role")]
         public uint[] RemovableRoles { get; set; }
-
-        [global::ProtoBuf.ProtoMember(11, Name = @"mentionable_role", IsPacked = true)]
-        public uint[] MentionableRoles { get; set; }
 
     }
 

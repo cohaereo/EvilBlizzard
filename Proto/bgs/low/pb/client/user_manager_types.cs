@@ -41,7 +41,18 @@ namespace bgs.protocol.usermanager.v1
         private ulong? __pbn__TimestampPlayed;
 
         [global::ProtoBuf.ProtoMember(4, Name = @"attributes")]
-        public global::System.Collections.Generic.List<global::bgs.protocol.Attribute> Attributes { get; } = new global::System.Collections.Generic.List<global::bgs.protocol.Attribute>();
+        public global::System.Collections.Generic.List<global::bgs.protocol.v2.Attribute> Attributes { get; } = new global::System.Collections.Generic.List<global::bgs.protocol.v2.Attribute>();
+
+        [global::ProtoBuf.ProtoMember(5, Name = @"id", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
+        [global::System.ComponentModel.DefaultValue(0u)]
+        public uint Id
+        {
+            get => __pbn__Id ?? 0u;
+            set => __pbn__Id = value;
+        }
+        public bool ShouldSerializeId() => __pbn__Id != null;
+        public void ResetId() => __pbn__Id = null;
+        private uint? __pbn__Id;
 
         [global::ProtoBuf.ProtoMember(6, Name = @"counter", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
         [global::System.ComponentModel.DefaultValue(0u)]
@@ -66,26 +77,25 @@ namespace bgs.protocol.usermanager.v1
         [global::ProtoBuf.ProtoMember(1, Name = @"account_id", IsRequired = true)]
         public global::bgs.protocol.EntityId AccountId { get; set; }
 
-        [global::ProtoBuf.ProtoMember(2, Name = @"battle_tag")]
+        [global::ProtoBuf.ProtoMember(2, Name = @"name")]
         [global::System.ComponentModel.DefaultValue("")]
-        public string BattleTag
+        public string Name
         {
-            get => __pbn__BattleTag ?? "";
-            set => __pbn__BattleTag = value;
+            get => __pbn__Name ?? "";
+            set => __pbn__Name = value;
         }
-        public bool ShouldSerializeBattleTag() => __pbn__BattleTag != null;
-        public void ResetBattleTag() => __pbn__BattleTag = null;
-        private string __pbn__BattleTag;
+        public bool ShouldSerializeName() => __pbn__Name != null;
+        public void ResetName() => __pbn__Name = null;
+        private string __pbn__Name;
 
         [global::ProtoBuf.ProtoMember(3, Name = @"role")]
-        [global::System.Obsolete]
         public uint[] Roles { get; set; }
 
         [global::ProtoBuf.ProtoMember(4, Name = @"privileges")]
-        [global::System.Obsolete]
+        [global::System.ComponentModel.DefaultValue(typeof(ulong), "0")]
         public ulong Privileges
         {
-            get => __pbn__Privileges.GetValueOrDefault();
+            get => __pbn__Privileges ?? 0ul;
             set => __pbn__Privileges = value;
         }
         public bool ShouldSerializePrivileges() => __pbn__Privileges != null;

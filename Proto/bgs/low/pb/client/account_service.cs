@@ -20,9 +20,10 @@ namespace bgs.protocol.account.v1
         public AccountReference Ref { get; set; }
 
         [global::ProtoBuf.ProtoMember(12, Name = @"fetch_id")]
+        [global::System.ComponentModel.DefaultValue(true)]
         public bool FetchId
         {
-            get => __pbn__FetchId.GetValueOrDefault();
+            get => __pbn__FetchId ?? true;
             set => __pbn__FetchId = value;
         }
         public bool ShouldSerializeFetchId() => __pbn__FetchId != null;
@@ -96,6 +97,36 @@ namespace bgs.protocol.account.v1
 
         [global::ProtoBuf.ProtoMember(1, Name = @"ref")]
         public global::System.Collections.Generic.List<SubscriberReference> Refs { get; } = new global::System.Collections.Generic.List<SubscriberReference>();
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class IsIgrAddressRequest : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"client_address")]
+        [global::System.ComponentModel.DefaultValue("")]
+        public string ClientAddress
+        {
+            get => __pbn__ClientAddress ?? "";
+            set => __pbn__ClientAddress = value;
+        }
+        public bool ShouldSerializeClientAddress() => __pbn__ClientAddress != null;
+        public void ResetClientAddress() => __pbn__ClientAddress = null;
+        private string __pbn__ClientAddress;
+
+        [global::ProtoBuf.ProtoMember(2, Name = @"region")]
+        public uint Region
+        {
+            get => __pbn__Region.GetValueOrDefault();
+            set => __pbn__Region = value;
+        }
+        public bool ShouldSerializeRegion() => __pbn__Region != null;
+        public void ResetRegion() => __pbn__Region = null;
+        private uint? __pbn__Region;
 
     }
 
@@ -192,7 +223,6 @@ namespace bgs.protocol.account.v1
             => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
 
         [global::ProtoBuf.ProtoMember(1, Name = @"account_id")]
-        [global::System.Obsolete]
         public global::bgs.protocol.EntityId AccountId { get; set; }
 
         [global::ProtoBuf.ProtoMember(2, Name = @"game_account_id")]
@@ -333,17 +363,6 @@ namespace bgs.protocol.account.v1
         [global::ProtoBuf.ProtoMember(2, Name = @"account_id")]
         public global::bgs.protocol.EntityId AccountId { get; set; }
 
-        [global::ProtoBuf.ProtoMember(3, Name = @"benefactor_id")]
-        [global::System.ComponentModel.DefaultValue("")]
-        public string BenefactorId
-        {
-            get => __pbn__BenefactorId ?? "";
-            set => __pbn__BenefactorId = value;
-        }
-        public bool ShouldSerializeBenefactorId() => __pbn__BenefactorId != null;
-        public void ResetBenefactorId() => __pbn__BenefactorId = null;
-        private string __pbn__BenefactorId;
-
     }
 
     [global::ProtoBuf.ProtoContract()]
@@ -420,6 +439,62 @@ namespace bgs.protocol.account.v1
     }
 
     [global::ProtoBuf.ProtoContract()]
+    public partial class UpdateParentalControlsAndCAISRequest : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"account")]
+        public AccountId Account { get; set; }
+
+        [global::ProtoBuf.ProtoMember(2, Name = @"parental_control_info")]
+        public ParentalControlInfo ParentalControlInfo { get; set; }
+
+        [global::ProtoBuf.ProtoMember(3, Name = @"cais_id")]
+        [global::System.ComponentModel.DefaultValue("")]
+        public string CaisId
+        {
+            get => __pbn__CaisId ?? "";
+            set => __pbn__CaisId = value;
+        }
+        public bool ShouldSerializeCaisId() => __pbn__CaisId != null;
+        public void ResetCaisId() => __pbn__CaisId = null;
+        private string __pbn__CaisId;
+
+        [global::ProtoBuf.ProtoMember(4, Name = @"session_start_time")]
+        public ulong SessionStartTime
+        {
+            get => __pbn__SessionStartTime.GetValueOrDefault();
+            set => __pbn__SessionStartTime = value;
+        }
+        public bool ShouldSerializeSessionStartTime() => __pbn__SessionStartTime != null;
+        public void ResetSessionStartTime() => __pbn__SessionStartTime = null;
+        private ulong? __pbn__SessionStartTime;
+
+        [global::ProtoBuf.ProtoMember(5, Name = @"start_time")]
+        public ulong StartTime
+        {
+            get => __pbn__StartTime.GetValueOrDefault();
+            set => __pbn__StartTime = value;
+        }
+        public bool ShouldSerializeStartTime() => __pbn__StartTime != null;
+        public void ResetStartTime() => __pbn__StartTime = null;
+        private ulong? __pbn__StartTime;
+
+        [global::ProtoBuf.ProtoMember(6, Name = @"end_time")]
+        public ulong EndTime
+        {
+            get => __pbn__EndTime.GetValueOrDefault();
+            set => __pbn__EndTime = value;
+        }
+        public bool ShouldSerializeEndTime() => __pbn__EndTime != null;
+        public void ResetEndTime() => __pbn__EndTime = null;
+        private ulong? __pbn__EndTime;
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
     public partial class AccountStateNotification : global::ProtoBuf.IExtensible
     {
         private global::ProtoBuf.IExtension __pbn__extensionData;
@@ -430,7 +505,6 @@ namespace bgs.protocol.account.v1
         public AccountState AccountState { get; set; }
 
         [global::ProtoBuf.ProtoMember(2, Name = @"subscriber_id")]
-        [global::System.Obsolete]
         public ulong SubscriberId
         {
             get => __pbn__SubscriberId.GetValueOrDefault();
@@ -466,7 +540,6 @@ namespace bgs.protocol.account.v1
         public GameAccountState GameAccountState { get; set; }
 
         [global::ProtoBuf.ProtoMember(2, Name = @"subscriber_id")]
-        [global::System.Obsolete]
         public ulong SubscriberId
         {
             get => __pbn__SubscriberId.GetValueOrDefault();

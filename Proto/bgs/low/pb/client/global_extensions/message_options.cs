@@ -26,27 +26,8 @@ namespace bgs.protocol
         public void ResetCustomSelectShard() => __pbn__CustomSelectShard = null;
         private bool? __pbn__CustomSelectShard;
 
-        [global::ProtoBuf.ProtoMember(2, Name = @"custom_validator")]
-        public bool CustomValidator
-        {
-            get => __pbn__CustomValidator.GetValueOrDefault();
-            set => __pbn__CustomValidator = value;
-        }
-        public bool ShouldSerializeCustomValidator() => __pbn__CustomValidator != null;
-        public void ResetCustomValidator() => __pbn__CustomValidator = null;
-        private bool? __pbn__CustomValidator;
-
     }
 
-    // public static partial class Extensions
-    // {
-    //     public static BGSMessageOptions GetMessageOptions(this global::Google.Protobuf.Reflection.MessageOptions obj)
-    //         => obj == null ? default : global::ProtoBuf.Extensible.GetValue<BGSMessageOptions>(obj, 90000);
-    //
-    //     public static void SetMessageOptions(this global::Google.Protobuf.Reflection.MessageOptions obj, BGSMessageOptions value)
-    //         => global::ProtoBuf.Extensible.AppendValue<BGSMessageOptions>(obj, 90000, value);
-    //
-    // }
 }
 
 #pragma warning restore CS0612, CS0618, CS1591, CS3021, CS8981, IDE0079, IDE1006, RCS1036, RCS1057, RCS1085, RCS1192

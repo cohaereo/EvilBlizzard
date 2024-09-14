@@ -18,7 +18,6 @@ namespace bgs.protocol.config
 
         [global::ProtoBuf.ProtoMember(1, Name = @"service_name")]
         [global::System.ComponentModel.DefaultValue("")]
-        [global::System.Obsolete]
         public string ServiceName
         {
             get => __pbn__ServiceName ?? "";
@@ -30,7 +29,6 @@ namespace bgs.protocol.config
 
         [global::ProtoBuf.ProtoMember(2, Name = @"method_name")]
         [global::System.ComponentModel.DefaultValue("")]
-        [global::System.Obsolete]
         public string MethodName
         {
             get => __pbn__MethodName ?? "";
@@ -52,9 +50,10 @@ namespace bgs.protocol.config
         private uint? __pbn__FixedCallCost;
 
         [global::ProtoBuf.ProtoMember(4, Name = @"fixed_packet_size")]
+        [global::System.ComponentModel.DefaultValue(0u)]
         public uint FixedPacketSize
         {
-            get => __pbn__FixedPacketSize.GetValueOrDefault();
+            get => __pbn__FixedPacketSize ?? 0u;
             set => __pbn__FixedPacketSize = value;
         }
         public bool ShouldSerializeFixedPacketSize() => __pbn__FixedPacketSize != null;
@@ -62,9 +61,10 @@ namespace bgs.protocol.config
         private uint? __pbn__FixedPacketSize;
 
         [global::ProtoBuf.ProtoMember(5, Name = @"variable_multiplier")]
+        [global::System.ComponentModel.DefaultValue(0f)]
         public float VariableMultiplier
         {
-            get => __pbn__VariableMultiplier.GetValueOrDefault();
+            get => __pbn__VariableMultiplier ?? 0f;
             set => __pbn__VariableMultiplier = value;
         }
         public bool ShouldSerializeVariableMultiplier() => __pbn__VariableMultiplier != null;
@@ -143,9 +143,10 @@ namespace bgs.protocol.config
         private uint? __pbn__CapBalance;
 
         [global::ProtoBuf.ProtoMember(13, Name = @"income_per_second")]
+        [global::System.ComponentModel.DefaultValue(0f)]
         public float IncomePerSecond
         {
-            get => __pbn__IncomePerSecond.GetValueOrDefault();
+            get => __pbn__IncomePerSecond ?? 0f;
             set => __pbn__IncomePerSecond = value;
         }
         public bool ShouldSerializeIncomePerSecond() => __pbn__IncomePerSecond != null;
@@ -216,14 +217,42 @@ namespace bgs.protocol.config
         private uint? __pbn__CapBalance;
 
         [global::ProtoBuf.ProtoMember(5, Name = @"startup_period")]
+        [global::System.ComponentModel.DefaultValue(0f)]
         public float StartupPeriod
         {
-            get => __pbn__StartupPeriod.GetValueOrDefault();
+            get => __pbn__StartupPeriod ?? 0f;
             set => __pbn__StartupPeriod = value;
         }
         public bool ShouldSerializeStartupPeriod() => __pbn__StartupPeriod != null;
         public void ResetStartupPeriod() => __pbn__StartupPeriod = null;
         private float? __pbn__StartupPeriod;
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class ProtocolAlias : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"server_service_name", IsRequired = true)]
+        public string ServerServiceName { get; set; }
+
+        [global::ProtoBuf.ProtoMember(2, Name = @"client_service_name", IsRequired = true)]
+        public string ClientServiceName { get; set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class ServiceAliases : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"protocol_alias")]
+        public global::System.Collections.Generic.List<ProtocolAlias> ProtocolAlias { get; } = new global::System.Collections.Generic.List<ProtocolAlias>();
 
     }
 

@@ -1,0 +1,69 @@
+syntax = "proto2";
+
+package bgs.protocol.channel.v1;
+
+import "bgs/low/pb/client/entity_types.proto";
+import "bgs/low/pb/client/channel_types.proto";
+import "bgs/low/pb/client/rpc_types.proto";
+
+message CreateChannelRequest {
+	optional Identity	agent_identity	= 1;
+	optional ChannelState	channel_state	= 3;
+	optional EntityId	channel_id	= 4;
+	optional uint64	object_id	= 5;
+}
+
+message CreateChannelResponse {
+	required uint64	object_id	= 1;
+	optional EntityId	channel_id	= 2;
+}
+
+message JoinChannelRequest {
+	optional Identity	agent_identity	= 1;
+	required EntityId	channel_id	= 3;
+	required uint64	object_id	= 4;
+}
+
+message JoinChannelResponse {
+	optional uint64	object_id	= 1;
+	optional bool	already_member	= 4 [default = false];
+	optional EntityId	member_id	= 5;
+}
+
+message SubscribeChannelRequest {
+	optional EntityId	agent_id	= 1;
+	required EntityId	channel_id	= 2;
+	required uint64	object_id	= 3;
+	optional Identity	agent_identity	= 4;
+}
+
+message SubscribeChannelResponse {
+	optional uint64	object_id	= 1;
+}
+
+message ListChannelsRequest {
+	optional Identity	agent_identity	= 1;
+	required ListChannelsOptions	options	= 2;
+}
+
+message ListChannelsResponse {
+	repeated ChannelDescription	channel	= 1;
+}
+
+message GetChannelInfoRequest {
+	optional EntityId	agent_id	= 1;
+	required EntityId	channel_id	= 2;
+}
+
+message GetChannelInfoResponse {
+	optional ChannelInfo	channel_info	= 1;
+}
+
+service ChannelOwnerService {
+	rpc CreateChannel (CreateChannelRequest) returns (CreateChannelResponse) {}
+	rpc JoinChannel (JoinChannelRequest) returns (JoinChannelResponse) {}
+	rpc ListChannels (ListChannelsRequest) returns (ListChannelsResponse) {}
+	rpc GetChannelInfo (GetChannelInfoRequest) returns (GetChannelInfoResponse) {}
+	rpc SubscribeChannel (SubscribeChannelRequest) returns (SubscribeChannelResponse) {}
+}
+

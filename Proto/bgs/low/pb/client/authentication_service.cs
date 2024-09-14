@@ -10,6 +10,79 @@ namespace bgs.protocol.authentication.v1
 {
 
     [global::ProtoBuf.ProtoContract()]
+    public partial class ModuleLoadRequest : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"module_handle", IsRequired = true)]
+        public global::bgs.protocol.ContentHandle ModuleHandle { get; set; }
+
+        [global::ProtoBuf.ProtoMember(2, Name = @"message")]
+        public byte[] Message
+        {
+            get => __pbn__Message;
+            set => __pbn__Message = value;
+        }
+        public bool ShouldSerializeMessage() => __pbn__Message != null;
+        public void ResetMessage() => __pbn__Message = null;
+        private byte[] __pbn__Message;
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class ModuleNotification : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(2, Name = @"module_id")]
+        public int ModuleId
+        {
+            get => __pbn__ModuleId.GetValueOrDefault();
+            set => __pbn__ModuleId = value;
+        }
+        public bool ShouldSerializeModuleId() => __pbn__ModuleId != null;
+        public void ResetModuleId() => __pbn__ModuleId = null;
+        private int? __pbn__ModuleId;
+
+        [global::ProtoBuf.ProtoMember(3, Name = @"result")]
+        public uint Result
+        {
+            get => __pbn__Result.GetValueOrDefault();
+            set => __pbn__Result = value;
+        }
+        public bool ShouldSerializeResult() => __pbn__Result != null;
+        public void ResetResult() => __pbn__Result = null;
+        private uint? __pbn__Result;
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class ModuleMessageRequest : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"module_id", IsRequired = true)]
+        public int ModuleId { get; set; }
+
+        [global::ProtoBuf.ProtoMember(2, Name = @"message")]
+        public byte[] Message
+        {
+            get => __pbn__Message;
+            set => __pbn__Message = value;
+        }
+        public bool ShouldSerializeMessage() => __pbn__Message != null;
+        public void ResetMessage() => __pbn__Message = null;
+        private byte[] __pbn__Message;
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
     public partial class LogonRequest : global::ProtoBuf.IExtensible
     {
         private global::ProtoBuf.IExtension __pbn__extensionData;
@@ -102,6 +175,17 @@ namespace bgs.protocol.authentication.v1
         public void ResetAllowLogonQueueNotifications() => __pbn__AllowLogonQueueNotifications = null;
         private bool? __pbn__AllowLogonQueueNotifications;
 
+        [global::ProtoBuf.ProtoMember(11, Name = @"web_client_verification")]
+        [global::System.ComponentModel.DefaultValue(false)]
+        public bool WebClientVerification
+        {
+            get => __pbn__WebClientVerification ?? false;
+            set => __pbn__WebClientVerification = value;
+        }
+        public bool ShouldSerializeWebClientVerification() => __pbn__WebClientVerification != null;
+        public void ResetWebClientVerification() => __pbn__WebClientVerification = null;
+        private bool? __pbn__WebClientVerification;
+
         [global::ProtoBuf.ProtoMember(12, Name = @"cached_web_credentials")]
         public byte[] CachedWebCredentials
         {
@@ -133,17 +217,6 @@ namespace bgs.protocol.authentication.v1
         public bool ShouldSerializeDeviceId() => __pbn__DeviceId != null;
         public void ResetDeviceId() => __pbn__DeviceId = null;
         private string __pbn__DeviceId;
-
-        [global::ProtoBuf.ProtoMember(16, Name = @"phone_number")]
-        [global::System.ComponentModel.DefaultValue("")]
-        public string PhoneNumber
-        {
-            get => __pbn__PhoneNumber ?? "";
-            set => __pbn__PhoneNumber = value;
-        }
-        public bool ShouldSerializePhoneNumber() => __pbn__PhoneNumber != null;
-        public void ResetPhoneNumber() => __pbn__PhoneNumber = null;
-        private string __pbn__PhoneNumber;
 
     }
 
@@ -229,17 +302,6 @@ namespace bgs.protocol.authentication.v1
         public void ResetRestrictedMode() => __pbn__RestrictedMode = null;
         private bool? __pbn__RestrictedMode;
 
-        [global::ProtoBuf.ProtoMember(11, Name = @"client_id")]
-        [global::System.ComponentModel.DefaultValue("")]
-        public string ClientId
-        {
-            get => __pbn__ClientId ?? "";
-            set => __pbn__ClientId = value;
-        }
-        public bool ShouldSerializeClientId() => __pbn__ClientId != null;
-        public void ResetClientId() => __pbn__ClientId = null;
-        private string __pbn__ClientId;
-
     }
 
     [global::ProtoBuf.ProtoContract()]
@@ -321,6 +383,58 @@ namespace bgs.protocol.authentication.v1
     }
 
     [global::ProtoBuf.ProtoContract()]
+    public partial class AccountSettingsNotification : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"licenses")]
+        public global::System.Collections.Generic.List<global::bgs.protocol.account.v1.AccountLicense> Licenses { get; } = new global::System.Collections.Generic.List<global::bgs.protocol.account.v1.AccountLicense>();
+
+        [global::ProtoBuf.ProtoMember(2, Name = @"is_using_rid")]
+        public bool IsUsingRid
+        {
+            get => __pbn__IsUsingRid.GetValueOrDefault();
+            set => __pbn__IsUsingRid = value;
+        }
+        public bool ShouldSerializeIsUsingRid() => __pbn__IsUsingRid != null;
+        public void ResetIsUsingRid() => __pbn__IsUsingRid = null;
+        private bool? __pbn__IsUsingRid;
+
+        [global::ProtoBuf.ProtoMember(3, Name = @"is_playing_from_igr")]
+        public bool IsPlayingFromIgr
+        {
+            get => __pbn__IsPlayingFromIgr.GetValueOrDefault();
+            set => __pbn__IsPlayingFromIgr = value;
+        }
+        public bool ShouldSerializeIsPlayingFromIgr() => __pbn__IsPlayingFromIgr != null;
+        public void ResetIsPlayingFromIgr() => __pbn__IsPlayingFromIgr = null;
+        private bool? __pbn__IsPlayingFromIgr;
+
+        [global::ProtoBuf.ProtoMember(4, Name = @"can_receive_voice")]
+        public bool CanReceiveVoice
+        {
+            get => __pbn__CanReceiveVoice.GetValueOrDefault();
+            set => __pbn__CanReceiveVoice = value;
+        }
+        public bool ShouldSerializeCanReceiveVoice() => __pbn__CanReceiveVoice != null;
+        public void ResetCanReceiveVoice() => __pbn__CanReceiveVoice = null;
+        private bool? __pbn__CanReceiveVoice;
+
+        [global::ProtoBuf.ProtoMember(5, Name = @"can_send_voice")]
+        public bool CanSendVoice
+        {
+            get => __pbn__CanSendVoice.GetValueOrDefault();
+            set => __pbn__CanSendVoice = value;
+        }
+        public bool ShouldSerializeCanSendVoice() => __pbn__CanSendVoice != null;
+        public void ResetCanSendVoice() => __pbn__CanSendVoice = null;
+        private bool? __pbn__CanSendVoice;
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
     public partial class ServerStateChangeRequest : global::ProtoBuf.IExtensible
     {
         private global::ProtoBuf.IExtension __pbn__extensionData;
@@ -394,6 +508,63 @@ namespace bgs.protocol.authentication.v1
 
         [global::ProtoBuf.ProtoMember(1, Name = @"version_info")]
         public VersionInfo VersionInfo { get; set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class MemModuleLoadRequest : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"handle", IsRequired = true)]
+        public global::bgs.protocol.ContentHandle Handle { get; set; }
+
+        [global::ProtoBuf.ProtoMember(2, Name = @"key", IsRequired = true)]
+        public byte[] Key { get; set; }
+
+        [global::ProtoBuf.ProtoMember(3, Name = @"input", IsRequired = true)]
+        public byte[] Input { get; set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class MemModuleLoadResponse : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"data", IsRequired = true)]
+        public byte[] Data { get; set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class SelectGameAccountRequest : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"game_account_id", IsRequired = true)]
+        public global::bgs.protocol.EntityId GameAccountId { get; set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class GameAccountSelectedRequest : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"result", IsRequired = true)]
+        public uint Result { get; set; }
+
+        [global::ProtoBuf.ProtoMember(2, Name = @"game_account_id")]
+        public global::bgs.protocol.EntityId GameAccountId { get; set; }
 
     }
 

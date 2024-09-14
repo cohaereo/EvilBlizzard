@@ -10,32 +10,6 @@ namespace bgs.protocol.connection.v1
 {
 
     [global::ProtoBuf.ProtoContract()]
-    public partial class ClientSdkVersionInfo : global::ProtoBuf.IExtensible
-    {
-        private global::ProtoBuf.IExtension __pbn__extensionData;
-        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
-            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
-
-        [global::ProtoBuf.ProtoMember(1, Name = @"sdk_name")]
-        [global::System.ComponentModel.DefaultValue("")]
-        public string SdkName
-        {
-            get => __pbn__SdkName ?? "";
-            set => __pbn__SdkName = value;
-        }
-        public bool ShouldSerializeSdkName() => __pbn__SdkName != null;
-        public void ResetSdkName() => __pbn__SdkName = null;
-        private string __pbn__SdkName;
-
-        [global::ProtoBuf.ProtoMember(2, Name = @"sdk_version")]
-        public global::bgs.protocol.SemanticVersion SdkVersion { get; set; }
-
-        [global::ProtoBuf.ProtoMember(3, Name = @"protocol_version")]
-        public global::bgs.protocol.SemanticVersion ProtocolVersion { get; set; }
-
-    }
-
-    [global::ProtoBuf.ProtoContract()]
     public partial class ConnectRequest : global::ProtoBuf.IExtensible
     {
         private global::ProtoBuf.IExtension __pbn__extensionData;
@@ -58,20 +32,6 @@ namespace bgs.protocol.connection.v1
         public bool ShouldSerializeUseBindlessRpc() => __pbn__UseBindlessRpc != null;
         public void ResetUseBindlessRpc() => __pbn__UseBindlessRpc = null;
         private bool? __pbn__UseBindlessRpc;
-
-        [global::ProtoBuf.ProtoMember(4, Name = @"metering_level")]
-        [global::System.ComponentModel.DefaultValue(MeteringLevel.MeteringLevelLegacy)]
-        public MeteringLevel MeteringLevel
-        {
-            get => __pbn__MeteringLevel ?? MeteringLevel.MeteringLevelLegacy;
-            set => __pbn__MeteringLevel = value;
-        }
-        public bool ShouldSerializeMeteringLevel() => __pbn__MeteringLevel != null;
-        public void ResetMeteringLevel() => __pbn__MeteringLevel = null;
-        private MeteringLevel? __pbn__MeteringLevel;
-
-        [global::ProtoBuf.ProtoMember(5, Name = @"client_sdk_info")]
-        public ClientSdkVersionInfo ClientSdkInfo { get; set; }
 
     }
 
@@ -140,17 +100,6 @@ namespace bgs.protocol.connection.v1
         [global::ProtoBuf.ProtoMember(8, Name = @"binary_content_handle_array")]
         public ConnectionMeteringContentHandles BinaryContentHandleArray { get; set; }
 
-        [global::ProtoBuf.ProtoMember(9, Name = @"session_id")]
-        [global::System.ComponentModel.DefaultValue("")]
-        public string SessionId
-        {
-            get => __pbn__SessionId ?? "";
-            set => __pbn__SessionId = value;
-        }
-        public bool ShouldSerializeSessionId() => __pbn__SessionId != null;
-        public void ResetSessionId() => __pbn__SessionId = null;
-        private string __pbn__SessionId;
-
     }
 
     [global::ProtoBuf.ProtoContract()]
@@ -175,12 +124,10 @@ namespace bgs.protocol.connection.v1
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
             => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
 
-        [global::ProtoBuf.ProtoMember(1, Name = @"deprecated_imported_service_hash", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsPacked = true)]
-        [global::System.Obsolete]
+        [global::ProtoBuf.ProtoMember(1, Name = @"deprecated_imported_service_hash", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
         public uint[] DeprecatedImportedServiceHashs { get; set; }
 
         [global::ProtoBuf.ProtoMember(2, Name = @"deprecated_exported_service")]
-        [global::System.Obsolete]
         public global::System.Collections.Generic.List<BoundService> DeprecatedExportedServices { get; } = new global::System.Collections.Generic.List<BoundService>();
 
         [global::ProtoBuf.ProtoMember(3, Name = @"exported_service")]
@@ -198,8 +145,7 @@ namespace bgs.protocol.connection.v1
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
             => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
 
-        [global::ProtoBuf.ProtoMember(1, Name = @"imported_service_id", IsPacked = true)]
-        [global::System.Obsolete]
+        [global::ProtoBuf.ProtoMember(1, Name = @"imported_service_id")]
         public uint[] ImportedServiceIds { get; set; }
 
     }
@@ -241,20 +187,6 @@ namespace bgs.protocol.connection.v1
         public bool ShouldSerializePayload() => __pbn__Payload != null;
         public void ResetPayload() => __pbn__Payload = null;
         private byte[] __pbn__Payload;
-
-        [global::ProtoBuf.ProtoMember(4, Name = @"forward")]
-        public global::bgs.protocol.ProcessId Forward { get; set; }
-
-        [global::ProtoBuf.ProtoMember(5, Name = @"forward_client_id")]
-        [global::System.ComponentModel.DefaultValue("")]
-        public string ForwardClientId
-        {
-            get => __pbn__ForwardClientId ?? "";
-            set => __pbn__ForwardClientId = value;
-        }
-        public bool ShouldSerializeForwardClientId() => __pbn__ForwardClientId != null;
-        public void ResetForwardClientId() => __pbn__ForwardClientId = null;
-        private string __pbn__ForwardClientId;
 
     }
 
@@ -329,15 +261,6 @@ namespace bgs.protocol.connection.v1
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
             => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
 
-    }
-
-    [global::ProtoBuf.ProtoContract()]
-    public enum MeteringLevel
-    {
-        [global::ProtoBuf.ProtoEnum(Name = @"METERING_LEVEL_LEGACY")]
-        MeteringLevelLegacy = 0,
-        [global::ProtoBuf.ProtoEnum(Name = @"METERING_LEVEL_CATEGORIZED")]
-        MeteringLevelCategorized = 1,
     }
 
 }

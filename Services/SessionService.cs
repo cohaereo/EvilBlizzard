@@ -19,17 +19,17 @@ public class SessionService : Service
 
         var onSessionCreated = new SessionCreatedNotification
         {
-            SessionId = "destiny_n_chill",
-            ClientId = "someclient",
-            SessionKey = AuthenticationService.SessionKey
+            SessionId = "destiny_n_chill"
+            // ClientId = "someclient",
+            // SessionKey = AuthenticationService.SessionKey
         };
         // OnSessionCreated
         ctx.SendNotification(SessionListener.ServiceHash, 1, onSessionCreated);
 
         return new CreateSessionResponse
         {
-            SessionId = "destiny_n_chill",
-            TimeoutS = uint.MaxValue
+            SessionId = "destiny_n_chill"
+            // TimeoutS = uint.MaxValue
         };
     }
 }

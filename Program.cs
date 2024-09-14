@@ -29,7 +29,8 @@ internal class Program
                      new FriendsService(),
                      new UserManagerService(),
                      new AccountService(),
-                     new WhisperService()
+                     new WhisperService(),
+                     new ResourceService()
                  })
         {
             var serviceHash = svc.GetType().GetCustomAttribute<ServiceAttribute>()?.ServiceHash;
@@ -58,8 +59,8 @@ internal class Program
                 while (true)
                 {
                     var frame = client.ReadRaw();
-                        // Console.WriteLine(
-                        //     $"Received {frame.Opcode} packet from client: {BitConverter.ToString(frame.Data)}");
+                    // Console.WriteLine(
+                    //     $"Received {frame.Opcode} packet from client: {BitConverter.ToString(frame.Data)}");
                     if (frame.Opcode == WebSocketFrame.OpCode.Close)
                     {
                         var closeReason = (WebSocketFrame.StatusCode)BitConverter.ToUInt16(frame.Data[..2].Reverse().ToArray());
@@ -83,7 +84,12 @@ internal class Program
                         throw new Exception($"Unknown service hash=0x{packet.Header.ServiceHash:X} method={packet.Header.MethodId}");
                     }
 
-                    if (result != null) client.Send(BgsMessage.Create(254, packet.Header.ServiceHash, packet.Header.MethodId, result, packet.Header.Token));
+                    if (result != null)
+                    {
+                        var msg = BgsMessage.Create(254, packet.Header.ServiceHash, packet.Header.MethodId, result, packet.Header.Token);
+                        msg.Header.Status = (uint)context.Error;
+                        client.Send(msg);
+                    }
                 }
 
                 client.Close();

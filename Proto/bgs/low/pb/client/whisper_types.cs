@@ -33,9 +33,6 @@ namespace bgs.protocol.whisper.v1
         public void ResetContent() => __pbn__Content = null;
         private string __pbn__Content;
 
-        [global::ProtoBuf.ProtoMember(4, Name = @"embed")]
-        public global::System.Collections.Generic.List<global::bgs.protocol.EmbedInfo> Embeds { get; } = new global::System.Collections.Generic.List<global::bgs.protocol.EmbedInfo>();
-
         [global::ProtoBuf.ProtoMember(6, Name = @"creation_time")]
         public ulong CreationTime
         {
@@ -56,13 +53,10 @@ namespace bgs.protocol.whisper.v1
         public void ResetProgram() => __pbn__Program = null;
         private uint? __pbn__Program;
 
-        [global::ProtoBuf.ProtoMember(8, Name = @"message_id")]
-        public global::bgs.protocol.MessageId MessageId { get; set; }
-
     }
 
     [global::ProtoBuf.ProtoContract()]
-    public partial class WhisperView : global::ProtoBuf.IExtensible
+    public partial class ViewMarker : global::ProtoBuf.IExtensible
     {
         private global::ProtoBuf.IExtension __pbn__extensionData;
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
@@ -71,19 +65,25 @@ namespace bgs.protocol.whisper.v1
         [global::ProtoBuf.ProtoMember(1, Name = @"sender_id")]
         public global::bgs.protocol.account.v1.AccountId SenderId { get; set; }
 
-        [global::ProtoBuf.ProtoMember(2, Name = @"view_marker")]
-        public global::bgs.protocol.ViewMarker ViewMarker { get; set; }
-
-        [global::ProtoBuf.ProtoMember(3, Name = @"sender_battle_tag")]
-        [global::System.ComponentModel.DefaultValue("")]
-        public string SenderBattleTag
+        [global::ProtoBuf.ProtoMember(2, Name = @"last_read_time")]
+        public ulong LastReadTime
         {
-            get => __pbn__SenderBattleTag ?? "";
-            set => __pbn__SenderBattleTag = value;
+            get => __pbn__LastReadTime.GetValueOrDefault();
+            set => __pbn__LastReadTime = value;
         }
-        public bool ShouldSerializeSenderBattleTag() => __pbn__SenderBattleTag != null;
-        public void ResetSenderBattleTag() => __pbn__SenderBattleTag = null;
-        private string __pbn__SenderBattleTag;
+        public bool ShouldSerializeLastReadTime() => __pbn__LastReadTime != null;
+        public void ResetLastReadTime() => __pbn__LastReadTime = null;
+        private ulong? __pbn__LastReadTime;
+
+        [global::ProtoBuf.ProtoMember(3, Name = @"last_message_time")]
+        public ulong LastMessageTime
+        {
+            get => __pbn__LastMessageTime.GetValueOrDefault();
+            set => __pbn__LastMessageTime = value;
+        }
+        public bool ShouldSerializeLastMessageTime() => __pbn__LastMessageTime != null;
+        public void ResetLastMessageTime() => __pbn__LastMessageTime = null;
+        private ulong? __pbn__LastMessageTime;
 
     }
 
@@ -107,6 +107,45 @@ namespace bgs.protocol.whisper.v1
         public bool ShouldSerializeContent() => __pbn__Content != null;
         public void ResetContent() => __pbn__Content = null;
         private string __pbn__Content;
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class GetOptions : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"fetch_from")]
+        public ulong FetchFrom
+        {
+            get => __pbn__FetchFrom.GetValueOrDefault();
+            set => __pbn__FetchFrom = value;
+        }
+        public bool ShouldSerializeFetchFrom() => __pbn__FetchFrom != null;
+        public void ResetFetchFrom() => __pbn__FetchFrom = null;
+        private ulong? __pbn__FetchFrom;
+
+        [global::ProtoBuf.ProtoMember(2, Name = @"fetch_until")]
+        public ulong FetchUntil
+        {
+            get => __pbn__FetchUntil.GetValueOrDefault();
+            set => __pbn__FetchUntil = value;
+        }
+        public bool ShouldSerializeFetchUntil() => __pbn__FetchUntil != null;
+        public void ResetFetchUntil() => __pbn__FetchUntil = null;
+        private ulong? __pbn__FetchUntil;
+
+        [global::ProtoBuf.ProtoMember(3, Name = @"max_messages")]
+        public uint MaxMessages
+        {
+            get => __pbn__MaxMessages.GetValueOrDefault();
+            set => __pbn__MaxMessages = value;
+        }
+        public bool ShouldSerializeMaxMessages() => __pbn__MaxMessages != null;
+        public void ResetMaxMessages() => __pbn__MaxMessages = null;
+        private uint? __pbn__MaxMessages;
 
     }
 

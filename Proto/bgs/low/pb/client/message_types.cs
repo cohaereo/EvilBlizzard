@@ -10,41 +10,12 @@ namespace bgs.protocol
 {
 
     [global::ProtoBuf.ProtoContract()]
-    public partial class MessageId : global::ProtoBuf.IExtensible
-    {
-        private global::ProtoBuf.IExtension __pbn__extensionData;
-        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
-            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
-
-        [global::ProtoBuf.ProtoMember(1, Name = @"epoch")]
-        public ulong Epoch
-        {
-            get => __pbn__Epoch.GetValueOrDefault();
-            set => __pbn__Epoch = value;
-        }
-        public bool ShouldSerializeEpoch() => __pbn__Epoch != null;
-        public void ResetEpoch() => __pbn__Epoch = null;
-        private ulong? __pbn__Epoch;
-
-        [global::ProtoBuf.ProtoMember(2, Name = @"position")]
-        public ulong Position
-        {
-            get => __pbn__Position.GetValueOrDefault();
-            set => __pbn__Position = value;
-        }
-        public bool ShouldSerializePosition() => __pbn__Position != null;
-        public void ResetPosition() => __pbn__Position = null;
-        private ulong? __pbn__Position;
-
-    }
-
-    [global::ProtoBuf.ProtoContract()]
     public enum TypingIndicator
     {
-        [global::ProtoBuf.ProtoEnum(Name = @"TYPING_START")]
-        TypingStart = 0,
-        [global::ProtoBuf.ProtoEnum(Name = @"TYPING_STOP")]
-        TypingStop = 1,
+        [global::ProtoBuf.ProtoEnum(Name = @"START")]
+        Start = 0,
+        [global::ProtoBuf.ProtoEnum(Name = @"STOP")]
+        Stop = 1,
     }
 
 }

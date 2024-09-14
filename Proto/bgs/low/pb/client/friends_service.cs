@@ -202,7 +202,25 @@ namespace bgs.protocol.friends.v1
         public global::bgs.protocol.EntityId TargetId { get; set; }
 
         [global::ProtoBuf.ProtoMember(3, Name = @"attribute")]
-        public global::System.Collections.Generic.List<global::bgs.protocol.Attribute> Attributes { get; } = new global::System.Collections.Generic.List<global::bgs.protocol.Attribute>();
+        public global::System.Collections.Generic.List<global::bgs.protocol.v2.Attribute> Attributes { get; } = new global::System.Collections.Generic.List<global::bgs.protocol.v2.Attribute>();
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class SetAttributeRequest : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"agent_id")]
+        public global::bgs.protocol.account.v1.AccountId AgentId { get; set; }
+
+        [global::ProtoBuf.ProtoMember(2, Name = @"target_id")]
+        public global::bgs.protocol.account.v1.AccountId TargetId { get; set; }
+
+        [global::ProtoBuf.ProtoMember(3, Name = @"attribute")]
+        public global::System.Collections.Generic.List<global::bgs.protocol.v2.Attribute> Attributes { get; } = new global::System.Collections.Generic.List<global::bgs.protocol.v2.Attribute>();
 
     }
 
@@ -243,7 +261,7 @@ namespace bgs.protocol.friends.v1
         [global::ProtoBuf.ProtoMember(2, Name = @"target_id")]
         public global::bgs.protocol.EntityId TargetId { get; set; }
 
-        [global::ProtoBuf.ProtoMember(3, Name = @"role", IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(3, Name = @"role")]
         public uint[] Roles { get; set; }
 
     }

@@ -37,6 +37,9 @@ namespace bgs.protocol.usermanager.v1
         [global::ProtoBuf.ProtoMember(2, Name = @"recent_players")]
         public global::System.Collections.Generic.List<RecentPlayer> RecentPlayers { get; } = new global::System.Collections.Generic.List<RecentPlayer>();
 
+        [global::ProtoBuf.ProtoMember(3, Name = @"role")]
+        public global::System.Collections.Generic.List<global::bgs.protocol.Role> Roles { get; } = new global::System.Collections.Generic.List<global::bgs.protocol.Role>();
+
     }
 
     [global::ProtoBuf.ProtoContract()]
@@ -120,6 +123,16 @@ namespace bgs.protocol.usermanager.v1
 
         [global::ProtoBuf.ProtoMember(2, Name = @"target_id", IsRequired = true)]
         public global::bgs.protocol.EntityId TargetId { get; set; }
+
+        [global::ProtoBuf.ProtoMember(3, Name = @"role")]
+        public uint Role
+        {
+            get => __pbn__Role.GetValueOrDefault();
+            set => __pbn__Role = value;
+        }
+        public bool ShouldSerializeRole() => __pbn__Role != null;
+        public void ResetRole() => __pbn__Role = null;
+        private uint? __pbn__Role;
 
     }
 

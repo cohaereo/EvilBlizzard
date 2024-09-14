@@ -1,0 +1,70 @@
+syntax = "proto2";
+
+package bgs.protocol.channel.v2.membership;
+
+import "bgs/low/pb/client/account_types.proto";
+import "bgs/low/pb/client/channel_enum.proto";
+import "bgs/low/pb/client/channel_id.proto";
+import "bgs/low/pb/client/channel_types.proto";
+import "bgs/low/pb/client/rpc_types.proto";
+import "bgs/low/pb/client/invitation_types.proto";
+
+message SubscribeRequest {
+	optional account.v1.GameAccountHandle	agent_id	= 1;
+}
+
+message SubscribeResponse {
+	optional ChannelMembershipState	state	= 1;
+}
+
+message UnsubscribeRequest {
+	optional account.v1.GameAccountHandle	agent_id	= 1;
+}
+
+message GetStateRequest {
+	optional account.v1.GameAccountHandle	agent_id	= 1;
+}
+
+message GetStateResponse {
+	optional ChannelMembershipState	state	= 1;
+}
+
+message ChannelAddedNotification {
+	optional account.v1.GameAccountHandle	agent_id	= 1;
+	optional account.v1.GameAccountHandle	subscriber_id	= 2;
+	optional ChannelDescription	membership	= 3;
+}
+
+message ChannelRemovedNotification {
+	optional account.v1.GameAccountHandle	agent_id	= 1;
+	optional account.v1.GameAccountHandle	subscriber_id	= 2;
+	optional ChannelId	channel_id	= 4;
+	optional ChannelRemovedReason	reason	= 5;
+}
+
+message ReceivedInvitationAddedNotification {
+	optional account.v1.GameAccountHandle	agent_id	= 1;
+	optional account.v1.GameAccountHandle	subscriber_id	= 2;
+	optional ChannelInvitation	invitation	= 3;
+}
+
+message ReceivedInvitationRemovedNotification {
+	optional account.v1.GameAccountHandle	agent_id	= 1;
+	optional account.v1.GameAccountHandle	subscriber_id	= 2;
+	optional fixed64	invitation_id	= 3;
+	optional InvitationRemovedReason	reason	= 4;
+}
+
+service ChannelMembershipService {
+	rpc Subscribe (SubscribeRequest) returns (SubscribeResponse) {}
+	rpc Unsubscribe (UnsubscribeRequest) returns (NoData) {}
+	rpc GetState (GetStateRequest) returns (GetStateResponse) {}
+}
+
+service ChannelMembershipListener {
+	rpc OnChannelAdded (ChannelAddedNotification) returns (NO_RESPONSE) {}
+	rpc OnChannelRemoved (ChannelRemovedNotification) returns (NO_RESPONSE) {}
+	rpc OnReceivedInvitationAdded (ReceivedInvitationAddedNotification) returns (NO_RESPONSE) {}
+	rpc OnReceivedInvitationRemoved (ReceivedInvitationRemovedNotification) returns (NO_RESPONSE) {}
+}
+

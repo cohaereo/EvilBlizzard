@@ -33,7 +33,7 @@ public class AuthenticationService : Service
             SessionKey = SessionKey,
             BattleTag = "cohaereo#0666",
             Email = "cohae@cohae.dev",
-            ClientId = "someclient",
+            // ClientId = "someclient",
             RestrictedMode = false
         };
 

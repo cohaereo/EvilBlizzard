@@ -95,17 +95,6 @@ namespace bgs.protocol.session.v1
         public void ResetRequiresMarkAlive() => __pbn__RequiresMarkAlive = null;
         private bool? __pbn__RequiresMarkAlive;
 
-        [global::ProtoBuf.ProtoMember(10, Name = @"mac_address")]
-        [global::System.ComponentModel.DefaultValue("")]
-        public string MacAddress
-        {
-            get => __pbn__MacAddress ?? "";
-            set => __pbn__MacAddress = value;
-        }
-        public bool ShouldSerializeMacAddress() => __pbn__MacAddress != null;
-        public void ResetMacAddress() => __pbn__MacAddress = null;
-        private string __pbn__MacAddress;
-
     }
 
     [global::ProtoBuf.ProtoContract()]
@@ -126,16 +115,6 @@ namespace bgs.protocol.session.v1
         public void ResetSessionId() => __pbn__SessionId = null;
         private string __pbn__SessionId;
 
-        [global::ProtoBuf.ProtoMember(2, Name = @"timeout_s")]
-        public uint TimeoutS
-        {
-            get => __pbn__TimeoutS.GetValueOrDefault();
-            set => __pbn__TimeoutS = value;
-        }
-        public bool ShouldSerializeTimeoutS() => __pbn__TimeoutS != null;
-        public void ResetTimeoutS() => __pbn__TimeoutS = null;
-        private uint? __pbn__TimeoutS;
-
     }
 
     [global::ProtoBuf.ProtoContract()]
@@ -150,17 +129,6 @@ namespace bgs.protocol.session.v1
 
         [global::ProtoBuf.ProtoMember(2, Name = @"options")]
         public SessionOptions Options { get; set; }
-
-        [global::ProtoBuf.ProtoMember(3, Name = @"session_id")]
-        [global::System.ComponentModel.DefaultValue("")]
-        public string SessionId
-        {
-            get => __pbn__SessionId ?? "";
-            set => __pbn__SessionId = value;
-        }
-        public bool ShouldSerializeSessionId() => __pbn__SessionId != null;
-        public void ResetSessionId() => __pbn__SessionId = null;
-        private string __pbn__SessionId;
 
     }
 
@@ -188,6 +156,44 @@ namespace bgs.protocol.session.v1
     }
 
     [global::ProtoBuf.ProtoContract()]
+    public partial class GetSessionCapacityRequest : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class GetSessionCapacityResponse : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"sessions_available")]
+        public uint SessionsAvailable
+        {
+            get => __pbn__SessionsAvailable.GetValueOrDefault();
+            set => __pbn__SessionsAvailable = value;
+        }
+        public bool ShouldSerializeSessionsAvailable() => __pbn__SessionsAvailable != null;
+        public void ResetSessionsAvailable() => __pbn__SessionsAvailable = null;
+        private uint? __pbn__SessionsAvailable;
+
+        [global::ProtoBuf.ProtoMember(2, Name = @"time_frame_seconds")]
+        public uint TimeFrameSeconds
+        {
+            get => __pbn__TimeFrameSeconds.GetValueOrDefault();
+            set => __pbn__TimeFrameSeconds = value;
+        }
+        public bool ShouldSerializeTimeFrameSeconds() => __pbn__TimeFrameSeconds != null;
+        public void ResetTimeFrameSeconds() => __pbn__TimeFrameSeconds = null;
+        private uint? __pbn__TimeFrameSeconds;
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
     public partial class GetSessionStateByBenefactorRequest : global::ProtoBuf.IExtensible
     {
         private global::ProtoBuf.IExtension __pbn__extensionData;
@@ -208,17 +214,6 @@ namespace bgs.protocol.session.v1
         public void ResetIncludeBillingDisabled() => __pbn__IncludeBillingDisabled = null;
         private bool? __pbn__IncludeBillingDisabled;
 
-        [global::ProtoBuf.ProtoMember(3, Name = @"benefactor_uuid")]
-        [global::System.ComponentModel.DefaultValue("")]
-        public string BenefactorUuid
-        {
-            get => __pbn__BenefactorUuid ?? "";
-            set => __pbn__BenefactorUuid = value;
-        }
-        public bool ShouldSerializeBenefactorUuid() => __pbn__BenefactorUuid != null;
-        public void ResetBenefactorUuid() => __pbn__BenefactorUuid = null;
-        private string __pbn__BenefactorUuid;
-
     }
 
     [global::ProtoBuf.ProtoContract()]
@@ -229,21 +224,10 @@ namespace bgs.protocol.session.v1
             => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
 
         [global::ProtoBuf.ProtoMember(1, Name = @"benefactor_handle")]
-        [global::System.Obsolete]
         public global::bgs.protocol.account.v1.GameAccountHandle BenefactorHandle { get; set; }
 
         [global::ProtoBuf.ProtoMember(2, Name = @"session")]
         public global::System.Collections.Generic.List<SessionState> Sessions { get; } = new global::System.Collections.Generic.List<SessionState>();
-
-        [global::ProtoBuf.ProtoMember(3, Name = @"minutes_remaining")]
-        public uint MinutesRemaining
-        {
-            get => __pbn__MinutesRemaining.GetValueOrDefault();
-            set => __pbn__MinutesRemaining = value;
-        }
-        public bool ShouldSerializeMinutesRemaining() => __pbn__MinutesRemaining != null;
-        public void ResetMinutesRemaining() => __pbn__MinutesRemaining = null;
-        private uint? __pbn__MinutesRemaining;
 
     }
 
@@ -302,7 +286,6 @@ namespace bgs.protocol.session.v1
             => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
 
         [global::ProtoBuf.ProtoMember(1, Name = @"handle")]
-        [global::System.Obsolete]
         public global::bgs.protocol.account.v1.GameAccountHandle Handle { get; set; }
 
         [global::ProtoBuf.ProtoMember(2, Name = @"session")]
@@ -381,30 +364,6 @@ namespace bgs.protocol.session.v1
     }
 
     [global::ProtoBuf.ProtoContract()]
-    public partial class GetGameSessionInfoRequest : global::ProtoBuf.IExtensible
-    {
-        private global::ProtoBuf.IExtension __pbn__extensionData;
-        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
-            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
-
-        [global::ProtoBuf.ProtoMember(1, Name = @"handle")]
-        public global::bgs.protocol.account.v1.GameAccountHandle Handle { get; set; }
-
-    }
-
-    [global::ProtoBuf.ProtoContract()]
-    public partial class GetGameSessionInfoResponse : global::ProtoBuf.IExtensible
-    {
-        private global::ProtoBuf.IExtension __pbn__extensionData;
-        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
-            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
-
-        [global::ProtoBuf.ProtoMember(1, Name = @"session_info")]
-        public GameSessionInfo SessionInfo { get; set; }
-
-    }
-
-    [global::ProtoBuf.ProtoContract()]
     public partial class SessionCreatedNotification : global::ProtoBuf.IExtensible
     {
         private global::ProtoBuf.IExtension __pbn__extensionData;
@@ -434,27 +393,6 @@ namespace bgs.protocol.session.v1
         public bool ShouldSerializeSessionId() => __pbn__SessionId != null;
         public void ResetSessionId() => __pbn__SessionId = null;
         private string __pbn__SessionId;
-
-        [global::ProtoBuf.ProtoMember(4, Name = @"session_key")]
-        public byte[] SessionKey
-        {
-            get => __pbn__SessionKey;
-            set => __pbn__SessionKey = value;
-        }
-        public bool ShouldSerializeSessionKey() => __pbn__SessionKey != null;
-        public void ResetSessionKey() => __pbn__SessionKey = null;
-        private byte[] __pbn__SessionKey;
-
-        [global::ProtoBuf.ProtoMember(5, Name = @"client_id")]
-        [global::System.ComponentModel.DefaultValue("")]
-        public string ClientId
-        {
-            get => __pbn__ClientId ?? "";
-            set => __pbn__ClientId = value;
-        }
-        public bool ShouldSerializeClientId() => __pbn__ClientId != null;
-        public void ResetClientId() => __pbn__ClientId = null;
-        private string __pbn__ClientId;
 
     }
 
@@ -521,125 +459,6 @@ namespace bgs.protocol.session.v1
         public bool ShouldSerializeSessionId() => __pbn__SessionId != null;
         public void ResetSessionId() => __pbn__SessionId = null;
         private string __pbn__SessionId;
-
-    }
-
-    [global::ProtoBuf.ProtoContract()]
-    public partial class SessionGameTimeWarningNotification : global::ProtoBuf.IExtensible
-    {
-        private global::ProtoBuf.IExtension __pbn__extensionData;
-        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
-            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
-
-        [global::ProtoBuf.ProtoMember(1, Name = @"identity")]
-        public global::bgs.protocol.account.v1.Identity Identity { get; set; }
-
-        [global::ProtoBuf.ProtoMember(2, Name = @"session_id")]
-        [global::System.ComponentModel.DefaultValue("")]
-        public string SessionId
-        {
-            get => __pbn__SessionId ?? "";
-            set => __pbn__SessionId = value;
-        }
-        public bool ShouldSerializeSessionId() => __pbn__SessionId != null;
-        public void ResetSessionId() => __pbn__SessionId = null;
-        private string __pbn__SessionId;
-
-        [global::ProtoBuf.ProtoMember(3, Name = @"remaining_time_duration_min")]
-        public uint RemainingTimeDurationMin
-        {
-            get => __pbn__RemainingTimeDurationMin.GetValueOrDefault();
-            set => __pbn__RemainingTimeDurationMin = value;
-        }
-        public bool ShouldSerializeRemainingTimeDurationMin() => __pbn__RemainingTimeDurationMin != null;
-        public void ResetRemainingTimeDurationMin() => __pbn__RemainingTimeDurationMin = null;
-        private uint? __pbn__RemainingTimeDurationMin;
-
-        [global::ProtoBuf.ProtoMember(4, Name = @"restriction_type")]
-        public uint RestrictionType
-        {
-            get => __pbn__RestrictionType.GetValueOrDefault();
-            set => __pbn__RestrictionType = value;
-        }
-        public bool ShouldSerializeRestrictionType() => __pbn__RestrictionType != null;
-        public void ResetRestrictionType() => __pbn__RestrictionType = null;
-        private uint? __pbn__RestrictionType;
-
-    }
-
-    [global::ProtoBuf.ProtoContract()]
-    public partial class SessionQueueUpdatedNotification : global::ProtoBuf.IExtensible
-    {
-        private global::ProtoBuf.IExtension __pbn__extensionData;
-        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
-            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
-
-        [global::ProtoBuf.ProtoMember(1, Name = @"identity")]
-        public global::bgs.protocol.account.v1.Identity Identity { get; set; }
-
-        [global::ProtoBuf.ProtoMember(2, Name = @"session_id")]
-        [global::System.ComponentModel.DefaultValue("")]
-        public string SessionId
-        {
-            get => __pbn__SessionId ?? "";
-            set => __pbn__SessionId = value;
-        }
-        public bool ShouldSerializeSessionId() => __pbn__SessionId != null;
-        public void ResetSessionId() => __pbn__SessionId = null;
-        private string __pbn__SessionId;
-
-        [global::ProtoBuf.ProtoMember(3, Name = @"position")]
-        public uint Position
-        {
-            get => __pbn__Position.GetValueOrDefault();
-            set => __pbn__Position = value;
-        }
-        public bool ShouldSerializePosition() => __pbn__Position != null;
-        public void ResetPosition() => __pbn__Position = null;
-        private uint? __pbn__Position;
-
-        [global::ProtoBuf.ProtoMember(4, Name = @"avg_creation_time_ms")]
-        public ulong AvgCreationTimeMs
-        {
-            get => __pbn__AvgCreationTimeMs.GetValueOrDefault();
-            set => __pbn__AvgCreationTimeMs = value;
-        }
-        public bool ShouldSerializeAvgCreationTimeMs() => __pbn__AvgCreationTimeMs != null;
-        public void ResetAvgCreationTimeMs() => __pbn__AvgCreationTimeMs = null;
-        private ulong? __pbn__AvgCreationTimeMs;
-
-    }
-
-    [global::ProtoBuf.ProtoContract()]
-    public partial class SessionQueueEndNotification : global::ProtoBuf.IExtensible
-    {
-        private global::ProtoBuf.IExtension __pbn__extensionData;
-        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
-            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
-
-        [global::ProtoBuf.ProtoMember(1, Name = @"identity")]
-        public global::bgs.protocol.account.v1.Identity Identity { get; set; }
-
-        [global::ProtoBuf.ProtoMember(2, Name = @"session_id")]
-        [global::System.ComponentModel.DefaultValue("")]
-        public string SessionId
-        {
-            get => __pbn__SessionId ?? "";
-            set => __pbn__SessionId = value;
-        }
-        public bool ShouldSerializeSessionId() => __pbn__SessionId != null;
-        public void ResetSessionId() => __pbn__SessionId = null;
-        private string __pbn__SessionId;
-
-        [global::ProtoBuf.ProtoMember(3, Name = @"reason")]
-        public uint Reason
-        {
-            get => __pbn__Reason.GetValueOrDefault();
-            set => __pbn__Reason = value;
-        }
-        public bool ShouldSerializeReason() => __pbn__Reason != null;
-        public void ResetReason() => __pbn__Reason = null;
-        private uint? __pbn__Reason;
 
     }
 

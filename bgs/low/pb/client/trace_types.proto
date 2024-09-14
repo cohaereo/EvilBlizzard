@@ -1,0 +1,17 @@
+syntax = "proto2";
+
+package bgs.protocol;
+
+message TraceInfo {
+	enum Sampling {
+		YES	= 0;
+		NO	= 1;
+		DEFER	= 2;
+	}
+
+	optional string	trace_id	= 1;
+	optional string	span_id	= 2;
+	optional string	parent_span_id	= 3;
+	optional Sampling	sampling	= 4 [default = DEFER];
+}
+

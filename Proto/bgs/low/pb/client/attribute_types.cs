@@ -6,7 +6,7 @@
 
 #region Designer generated code
 #pragma warning disable CS0612, CS0618, CS1591, CS3021, CS8981, IDE0079, IDE1006, RCS1036, RCS1057, RCS1085, RCS1192
-namespace bgs.protocol
+namespace bgs.protocol.v2
 {
 
     [global::ProtoBuf.ProtoContract()]
@@ -16,7 +16,7 @@ namespace bgs.protocol
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
             => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
 
-        [global::ProtoBuf.ProtoMember(2, Name = @"bool_value")]
+        [global::ProtoBuf.ProtoMember(1, Name = @"bool_value")]
         public bool BoolValue
         {
             get => __pbn__BoolValue.GetValueOrDefault();
@@ -26,7 +26,7 @@ namespace bgs.protocol
         public void ResetBoolValue() => __pbn__BoolValue = null;
         private bool? __pbn__BoolValue;
 
-        [global::ProtoBuf.ProtoMember(3, Name = @"int_value")]
+        [global::ProtoBuf.ProtoMember(2, Name = @"int_value")]
         public long IntValue
         {
             get => __pbn__IntValue.GetValueOrDefault();
@@ -36,7 +36,7 @@ namespace bgs.protocol
         public void ResetIntValue() => __pbn__IntValue = null;
         private long? __pbn__IntValue;
 
-        [global::ProtoBuf.ProtoMember(4, Name = @"float_value")]
+        [global::ProtoBuf.ProtoMember(3, Name = @"float_value")]
         public double FloatValue
         {
             get => __pbn__FloatValue.GetValueOrDefault();
@@ -46,7 +46,7 @@ namespace bgs.protocol
         public void ResetFloatValue() => __pbn__FloatValue = null;
         private double? __pbn__FloatValue;
 
-        [global::ProtoBuf.ProtoMember(5, Name = @"string_value")]
+        [global::ProtoBuf.ProtoMember(4, Name = @"string_value")]
         [global::System.ComponentModel.DefaultValue("")]
         public string StringValue
         {
@@ -57,7 +57,7 @@ namespace bgs.protocol
         public void ResetStringValue() => __pbn__StringValue = null;
         private string __pbn__StringValue;
 
-        [global::ProtoBuf.ProtoMember(6, Name = @"blob_value")]
+        [global::ProtoBuf.ProtoMember(5, Name = @"blob_value")]
         public byte[] BlobValue
         {
             get => __pbn__BlobValue;
@@ -67,28 +67,7 @@ namespace bgs.protocol
         public void ResetBlobValue() => __pbn__BlobValue = null;
         private byte[] __pbn__BlobValue;
 
-        [global::ProtoBuf.ProtoMember(7, Name = @"message_value")]
-        public byte[] MessageValue
-        {
-            get => __pbn__MessageValue;
-            set => __pbn__MessageValue = value;
-        }
-        public bool ShouldSerializeMessageValue() => __pbn__MessageValue != null;
-        public void ResetMessageValue() => __pbn__MessageValue = null;
-        private byte[] __pbn__MessageValue;
-
-        [global::ProtoBuf.ProtoMember(8, Name = @"fourcc_value")]
-        [global::System.ComponentModel.DefaultValue("")]
-        public string FourccValue
-        {
-            get => __pbn__FourccValue ?? "";
-            set => __pbn__FourccValue = value;
-        }
-        public bool ShouldSerializeFourccValue() => __pbn__FourccValue != null;
-        public void ResetFourccValue() => __pbn__FourccValue = null;
-        private string __pbn__FourccValue;
-
-        [global::ProtoBuf.ProtoMember(9, Name = @"uint_value")]
+        [global::ProtoBuf.ProtoMember(6, Name = @"uint_value")]
         public ulong UintValue
         {
             get => __pbn__UintValue.GetValueOrDefault();
@@ -97,9 +76,6 @@ namespace bgs.protocol
         public bool ShouldSerializeUintValue() => __pbn__UintValue != null;
         public void ResetUintValue() => __pbn__UintValue = null;
         private ulong? __pbn__UintValue;
-
-        [global::ProtoBuf.ProtoMember(10, Name = @"entity_id_value")]
-        public EntityId EntityIdValue { get; set; }
 
     }
 
@@ -110,10 +86,18 @@ namespace bgs.protocol
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
             => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
 
-        [global::ProtoBuf.ProtoMember(1, Name = @"name", IsRequired = true)]
-        public string Name { get; set; }
+        [global::ProtoBuf.ProtoMember(1, Name = @"name")]
+        [global::System.ComponentModel.DefaultValue("")]
+        public string Name
+        {
+            get => __pbn__Name ?? "";
+            set => __pbn__Name = value;
+        }
+        public bool ShouldSerializeName() => __pbn__Name != null;
+        public void ResetName() => __pbn__Name = null;
+        private string __pbn__Name;
 
-        [global::ProtoBuf.ProtoMember(2, Name = @"value", IsRequired = true)]
+        [global::ProtoBuf.ProtoMember(2, Name = @"value")]
         public Variant Value { get; set; }
 
     }
@@ -125,8 +109,16 @@ namespace bgs.protocol
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
             => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
 
-        [global::ProtoBuf.ProtoMember(1, Name = @"op", IsRequired = true)]
-        public Operation Op { get; set; }
+        [global::ProtoBuf.ProtoMember(1, Name = @"op")]
+        [global::System.ComponentModel.DefaultValue(Operation.MatchNone)]
+        public Operation Op
+        {
+            get => __pbn__Op ?? Operation.MatchNone;
+            set => __pbn__Op = value;
+        }
+        public bool ShouldSerializeOp() => __pbn__Op != null;
+        public void ResetOp() => __pbn__Op = null;
+        private Operation? __pbn__Op;
 
         [global::ProtoBuf.ProtoMember(2, Name = @"attribute")]
         public global::System.Collections.Generic.List<Attribute> Attributes { get; } = new global::System.Collections.Generic.List<Attribute>();

@@ -103,17 +103,6 @@ namespace bgs.protocol.account.v1
         public void ResetBattleTag() => __pbn__BattleTag = null;
         private string __pbn__BattleTag;
 
-        [global::ProtoBuf.ProtoMember(5, Name = @"phone_number")]
-        [global::System.ComponentModel.DefaultValue("")]
-        public string PhoneNumber
-        {
-            get => __pbn__PhoneNumber ?? "";
-            set => __pbn__PhoneNumber = value;
-        }
-        public bool ShouldSerializePhoneNumber() => __pbn__PhoneNumber != null;
-        public void ResetPhoneNumber() => __pbn__PhoneNumber = null;
-        private string __pbn__PhoneNumber;
-
         [global::ProtoBuf.ProtoMember(10, Name = @"region")]
         [global::System.ComponentModel.DefaultValue(0u)]
         public uint Region
@@ -139,6 +128,9 @@ namespace bgs.protocol.account.v1
 
         [global::ProtoBuf.ProtoMember(2, Name = @"game_account")]
         public GameAccountHandle GameAccount { get; set; }
+
+        [global::ProtoBuf.ProtoMember(3, Name = @"process")]
+        public global::bgs.protocol.ProcessId Process { get; set; }
 
     }
 
@@ -245,16 +237,6 @@ namespace bgs.protocol.account.v1
 
         [global::ProtoBuf.ProtoMember(11, Name = @"game_account_tags")]
         public global::System.Collections.Generic.List<RegionTag> GameAccountTags { get; } = new global::System.Collections.Generic.List<RegionTag>();
-
-        [global::ProtoBuf.ProtoMember(12, Name = @"security_status_tag", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
-        public uint SecurityStatusTag
-        {
-            get => __pbn__SecurityStatusTag.GetValueOrDefault();
-            set => __pbn__SecurityStatusTag = value;
-        }
-        public bool ShouldSerializeSecurityStatusTag() => __pbn__SecurityStatusTag != null;
-        public void ResetSecurityStatusTag() => __pbn__SecurityStatusTag = null;
-        private uint? __pbn__SecurityStatusTag;
 
     }
 
@@ -384,16 +366,6 @@ namespace bgs.protocol.account.v1
         public void ResetFieldGameAccounts() => __pbn__FieldGameAccounts = null;
         private bool? __pbn__FieldGameAccounts;
 
-        [global::ProtoBuf.ProtoMember(9, Name = @"field_security_status")]
-        public bool FieldSecurityStatus
-        {
-            get => __pbn__FieldSecurityStatus.GetValueOrDefault();
-            set => __pbn__FieldSecurityStatus = value;
-        }
-        public bool ShouldSerializeFieldSecurityStatus() => __pbn__FieldSecurityStatus != null;
-        public void ResetFieldSecurityStatus() => __pbn__FieldSecurityStatus = null;
-        private bool? __pbn__FieldSecurityStatus;
-
     }
 
     [global::ProtoBuf.ProtoContract()]
@@ -498,18 +470,6 @@ namespace bgs.protocol.account.v1
         public bool ShouldSerializeSubscriberId() => __pbn__SubscriberId != null;
         public void ResetSubscriberId() => __pbn__SubscriberId = null;
         private ulong? __pbn__SubscriberId;
-
-    }
-
-    [global::ProtoBuf.ProtoContract()]
-    public partial class OptIns : global::ProtoBuf.IExtensible
-    {
-        private global::ProtoBuf.IExtension __pbn__extensionData;
-        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
-            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
-
-        [global::ProtoBuf.ProtoMember(1, Name = @"ids", IsPacked = true)]
-        public ulong[] Ids { get; set; }
 
     }
 
@@ -648,61 +608,6 @@ namespace bgs.protocol.account.v1
         public void ResetTestAccount() => __pbn__TestAccount = null;
         private bool? __pbn__TestAccount;
 
-        [global::ProtoBuf.ProtoMember(17, Name = @"is_sms_protected")]
-        public bool IsSmsProtected
-        {
-            get => __pbn__IsSmsProtected.GetValueOrDefault();
-            set => __pbn__IsSmsProtected = value;
-        }
-        public bool ShouldSerializeIsSmsProtected() => __pbn__IsSmsProtected != null;
-        public void ResetIsSmsProtected() => __pbn__IsSmsProtected = null;
-        private bool? __pbn__IsSmsProtected;
-
-        [global::ProtoBuf.ProtoMember(18, Name = @"ratings_board_minimum_age")]
-        public uint RatingsBoardMinimumAge
-        {
-            get => __pbn__RatingsBoardMinimumAge.GetValueOrDefault();
-            set => __pbn__RatingsBoardMinimumAge = value;
-        }
-        public bool ShouldSerializeRatingsBoardMinimumAge() => __pbn__RatingsBoardMinimumAge != null;
-        public void ResetRatingsBoardMinimumAge() => __pbn__RatingsBoardMinimumAge = null;
-        private uint? __pbn__RatingsBoardMinimumAge;
-
-        [global::ProtoBuf.ProtoMember(19, Name = @"phone_number")]
-        [global::System.ComponentModel.DefaultValue("")]
-        public string PhoneNumber
-        {
-            get => __pbn__PhoneNumber ?? "";
-            set => __pbn__PhoneNumber = value;
-        }
-        public bool ShouldSerializePhoneNumber() => __pbn__PhoneNumber != null;
-        public void ResetPhoneNumber() => __pbn__PhoneNumber = null;
-        private string __pbn__PhoneNumber;
-
-        [global::ProtoBuf.ProtoMember(20, Name = @"birthdate")]
-        [global::System.ComponentModel.DefaultValue("")]
-        public string Birthdate
-        {
-            get => __pbn__Birthdate ?? "";
-            set => __pbn__Birthdate = value;
-        }
-        public bool ShouldSerializeBirthdate() => __pbn__Birthdate != null;
-        public void ResetBirthdate() => __pbn__Birthdate = null;
-        private string __pbn__Birthdate;
-
-        [global::ProtoBuf.ProtoMember(21, Name = @"legal_country_feature_restrictions_applied")]
-        public bool LegalCountryFeatureRestrictionsApplied
-        {
-            get => __pbn__LegalCountryFeatureRestrictionsApplied.GetValueOrDefault();
-            set => __pbn__LegalCountryFeatureRestrictionsApplied = value;
-        }
-        public bool ShouldSerializeLegalCountryFeatureRestrictionsApplied() => __pbn__LegalCountryFeatureRestrictionsApplied != null;
-        public void ResetLegalCountryFeatureRestrictionsApplied() => __pbn__LegalCountryFeatureRestrictionsApplied = null;
-        private bool? __pbn__LegalCountryFeatureRestrictionsApplied;
-
-        [global::ProtoBuf.ProtoMember(22, Name = @"opt_ins")]
-        public OptIns OptIns { get; set; }
-
     }
 
     [global::ProtoBuf.ProtoContract()]
@@ -752,16 +657,6 @@ namespace bgs.protocol.account.v1
         public bool ShouldSerializegame_info_privacy() => __pbn__game_info_privacy != null;
         public void Resetgame_info_privacy() => __pbn__game_info_privacy = null;
         private GameInfoPrivacy? __pbn__game_info_privacy;
-
-        [global::ProtoBuf.ProtoMember(7, Name = @"only_allow_friend_whispers")]
-        public bool OnlyAllowFriendWhispers
-        {
-            get => __pbn__OnlyAllowFriendWhispers.GetValueOrDefault();
-            set => __pbn__OnlyAllowFriendWhispers = value;
-        }
-        public bool ShouldSerializeOnlyAllowFriendWhispers() => __pbn__OnlyAllowFriendWhispers != null;
-        public void ResetOnlyAllowFriendWhispers() => __pbn__OnlyAllowFriendWhispers = null;
-        private bool? __pbn__OnlyAllowFriendWhispers;
 
         [global::ProtoBuf.ProtoContract()]
         public enum GameInfoPrivacy
@@ -836,49 +731,6 @@ namespace bgs.protocol.account.v1
 
         [global::ProtoBuf.ProtoMember(8, Name = @"play_schedule")]
         public bool[] PlaySchedules { get; set; }
-
-        [global::ProtoBuf.ProtoMember(9, Name = @"can_join_group")]
-        public bool CanJoinGroup
-        {
-            get => __pbn__CanJoinGroup.GetValueOrDefault();
-            set => __pbn__CanJoinGroup = value;
-        }
-        public bool ShouldSerializeCanJoinGroup() => __pbn__CanJoinGroup != null;
-        public void ResetCanJoinGroup() => __pbn__CanJoinGroup = null;
-        private bool? __pbn__CanJoinGroup;
-
-        [global::ProtoBuf.ProtoMember(10, Name = @"can_use_profile")]
-        public bool CanUseProfile
-        {
-            get => __pbn__CanUseProfile.GetValueOrDefault();
-            set => __pbn__CanUseProfile = value;
-        }
-        public bool ShouldSerializeCanUseProfile() => __pbn__CanUseProfile != null;
-        public void ResetCanUseProfile() => __pbn__CanUseProfile = null;
-        private bool? __pbn__CanUseProfile;
-
-    }
-
-    [global::ProtoBuf.ProtoContract()]
-    public partial class PlayScheduleRestriction : global::ProtoBuf.IExtensible
-    {
-        private global::ProtoBuf.IExtension __pbn__extensionData;
-        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
-            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
-
-        [global::ProtoBuf.ProtoMember(1, Name = @"play_schedule")]
-        public bool[] PlaySchedules { get; set; }
-
-        [global::ProtoBuf.ProtoMember(2, Name = @"timezone")]
-        [global::System.ComponentModel.DefaultValue("")]
-        public string Timezone
-        {
-            get => __pbn__Timezone ?? "";
-            set => __pbn__Timezone = value;
-        }
-        public bool ShouldSerializeTimezone() => __pbn__Timezone != null;
-        public void ResetTimezone() => __pbn__Timezone = null;
-        private string __pbn__Timezone;
 
     }
 
@@ -962,16 +814,6 @@ namespace bgs.protocol.account.v1
         public bool ShouldSerializeRealmPermissions() => __pbn__RealmPermissions != null;
         public void ResetRealmPermissions() => __pbn__RealmPermissions = null;
         private uint? __pbn__RealmPermissions;
-
-        [global::ProtoBuf.ProtoMember(12, Name = @"last_logout_time_ms")]
-        public ulong LastLogoutTimeMs
-        {
-            get => __pbn__LastLogoutTimeMs.GetValueOrDefault();
-            set => __pbn__LastLogoutTimeMs = value;
-        }
-        public bool ShouldSerializeLastLogoutTimeMs() => __pbn__LastLogoutTimeMs != null;
-        public void ResetLastLogoutTimeMs() => __pbn__LastLogoutTimeMs = null;
-        private ulong? __pbn__LastLogoutTimeMs;
 
     }
 
@@ -1062,7 +904,6 @@ namespace bgs.protocol.account.v1
         private uint? __pbn__ParentalWeeklyMinutesRemaining;
 
         [global::ProtoBuf.ProtoMember(4, Name = @"seconds_remaining_until_kick")]
-        [global::System.Obsolete]
         public uint SecondsRemainingUntilKick
         {
             get => __pbn__SecondsRemainingUntilKick.GetValueOrDefault();
@@ -1170,7 +1011,6 @@ namespace bgs.protocol.account.v1
             => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
 
         [global::ProtoBuf.ProtoMember(3, Name = @"start_time")]
-        [global::System.Obsolete]
         public uint StartTime
         {
             get => __pbn__StartTime.GetValueOrDefault();
@@ -1225,16 +1065,6 @@ namespace bgs.protocol.account.v1
 
         [global::ProtoBuf.ProtoMember(9, Name = @"igr_id")]
         public IgrId IgrId { get; set; }
-
-        [global::ProtoBuf.ProtoMember(10, Name = @"platform_id", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
-        public uint PlatformId
-        {
-            get => __pbn__PlatformId.GetValueOrDefault();
-            set => __pbn__PlatformId = value;
-        }
-        public bool ShouldSerializePlatformId() => __pbn__PlatformId != null;
-        public void ResetPlatformId() => __pbn__PlatformId = null;
-        private uint? __pbn__PlatformId;
 
     }
 
@@ -1353,65 +1183,6 @@ namespace bgs.protocol.account.v1
     }
 
     [global::ProtoBuf.ProtoContract()]
-    public partial class SecurityStatus : global::ProtoBuf.IExtensible
-    {
-        private global::ProtoBuf.IExtension __pbn__extensionData;
-        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
-            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
-
-        [global::ProtoBuf.ProtoMember(1, Name = @"sms_protect_enabled")]
-        public bool SmsProtectEnabled
-        {
-            get => __pbn__SmsProtectEnabled.GetValueOrDefault();
-            set => __pbn__SmsProtectEnabled = value;
-        }
-        public bool ShouldSerializeSmsProtectEnabled() => __pbn__SmsProtectEnabled != null;
-        public void ResetSmsProtectEnabled() => __pbn__SmsProtectEnabled = null;
-        private bool? __pbn__SmsProtectEnabled;
-
-        [global::ProtoBuf.ProtoMember(2, Name = @"email_verified")]
-        public bool EmailVerified
-        {
-            get => __pbn__EmailVerified.GetValueOrDefault();
-            set => __pbn__EmailVerified = value;
-        }
-        public bool ShouldSerializeEmailVerified() => __pbn__EmailVerified != null;
-        public void ResetEmailVerified() => __pbn__EmailVerified = null;
-        private bool? __pbn__EmailVerified;
-
-        [global::ProtoBuf.ProtoMember(3, Name = @"authenticator_enabled")]
-        public bool AuthenticatorEnabled
-        {
-            get => __pbn__AuthenticatorEnabled.GetValueOrDefault();
-            set => __pbn__AuthenticatorEnabled = value;
-        }
-        public bool ShouldSerializeAuthenticatorEnabled() => __pbn__AuthenticatorEnabled != null;
-        public void ResetAuthenticatorEnabled() => __pbn__AuthenticatorEnabled = null;
-        private bool? __pbn__AuthenticatorEnabled;
-
-        [global::ProtoBuf.ProtoMember(4, Name = @"sqa_enabled")]
-        public bool SqaEnabled
-        {
-            get => __pbn__SqaEnabled.GetValueOrDefault();
-            set => __pbn__SqaEnabled = value;
-        }
-        public bool ShouldSerializeSqaEnabled() => __pbn__SqaEnabled != null;
-        public void ResetSqaEnabled() => __pbn__SqaEnabled = null;
-        private bool? __pbn__SqaEnabled;
-
-        [global::ProtoBuf.ProtoMember(5, Name = @"authenticator_required")]
-        public bool AuthenticatorRequired
-        {
-            get => __pbn__AuthenticatorRequired.GetValueOrDefault();
-            set => __pbn__AuthenticatorRequired = value;
-        }
-        public bool ShouldSerializeAuthenticatorRequired() => __pbn__AuthenticatorRequired != null;
-        public void ResetAuthenticatorRequired() => __pbn__AuthenticatorRequired = null;
-        private bool? __pbn__AuthenticatorRequired;
-
-    }
-
-    [global::ProtoBuf.ProtoContract()]
     public partial class AccountState : global::ProtoBuf.IExtensible
     {
         private global::ProtoBuf.IExtension __pbn__extensionData;
@@ -1435,12 +1206,6 @@ namespace bgs.protocol.account.v1
 
         [global::ProtoBuf.ProtoMember(7, Name = @"game_accounts")]
         public global::System.Collections.Generic.List<GameAccountList> GameAccounts { get; } = new global::System.Collections.Generic.List<GameAccountList>();
-
-        [global::ProtoBuf.ProtoMember(8, Name = @"security_status")]
-        public SecurityStatus SecurityStatus { get; set; }
-
-        [global::ProtoBuf.ProtoMember(9, Name = @"government_curfew")]
-        public PlayScheduleRestriction GovernmentCurfew { get; set; }
 
     }
 
@@ -1538,17 +1303,6 @@ namespace bgs.protocol.account.v1
         public void ResetExternalId() => __pbn__ExternalId = null;
         private uint? __pbn__ExternalId;
 
-        [global::ProtoBuf.ProtoMember(3, Name = @"uuid")]
-        [global::System.ComponentModel.DefaultValue("")]
-        public string Uuid
-        {
-            get => __pbn__Uuid ?? "";
-            set => __pbn__Uuid = value;
-        }
-        public bool ShouldSerializeUuid() => __pbn__Uuid != null;
-        public void ResetUuid() => __pbn__Uuid = null;
-        private string __pbn__Uuid;
-
     }
 
     [global::ProtoBuf.ProtoContract()]
@@ -1588,10 +1342,6 @@ namespace bgs.protocol.account.v1
         IdentNoData = 0,
         [global::ProtoBuf.ProtoEnum(Name = @"IDENT_PENDING")]
         IdentPending = 1,
-        [global::ProtoBuf.ProtoEnum(Name = @"IDENT_OVER_18")]
-        IdentOver18 = 2,
-        [global::ProtoBuf.ProtoEnum(Name = @"IDENT_UNDER_18")]
-        IdentUnder18 = 3,
         [global::ProtoBuf.ProtoEnum(Name = @"IDENT_FAILED")]
         IdentFailed = 4,
         [global::ProtoBuf.ProtoEnum(Name = @"IDENT_SUCCESS")]

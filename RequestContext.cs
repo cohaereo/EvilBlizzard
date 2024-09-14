@@ -12,6 +12,7 @@ public class RequestContext
 
     public Client Client { get; set; }
     public Header Header { get; set; }
+    public ErrorCode Error { get; set; } = ErrorCode.Ok;
 
     /// <summary>
     ///     Sends a notification associated with this request to the client

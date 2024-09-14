@@ -89,7 +89,6 @@ namespace bgs.protocol
 
         [global::ProtoBuf.ProtoMember(1, Name = @"invitation_message")]
         [global::System.ComponentModel.DefaultValue("")]
-        [global::System.Obsolete]
         public string InvitationMessage
         {
             get => __pbn__InvitationMessage ?? "";
@@ -126,19 +125,6 @@ namespace bgs.protocol
         InvitationRemovedReasonExpired = 4,
         [global::ProtoBuf.ProtoEnum(Name = @"INVITATION_REMOVED_REASON_CANCELED")]
         InvitationRemovedReasonCanceled = 5,
-    }
-
-    [global::ProtoBuf.ProtoContract()]
-    public enum SuggestionRemovedReason
-    {
-        [global::ProtoBuf.ProtoEnum(Name = @"SUGGESTION_REMOVED_REASON_APPROVED")]
-        SuggestionRemovedReasonApproved = 0,
-        [global::ProtoBuf.ProtoEnum(Name = @"SUGGESTION_REMOVED_REASON_DECLINED")]
-        SuggestionRemovedReasonDeclined = 1,
-        [global::ProtoBuf.ProtoEnum(Name = @"SUGGESTION_REMOVED_REASON_EXPIRED")]
-        SuggestionRemovedReasonExpired = 2,
-        [global::ProtoBuf.ProtoEnum(Name = @"SUGGESTION_REMOVED_REASON_CANCELED")]
-        SuggestionRemovedReasonCanceled = 3,
     }
 
 }

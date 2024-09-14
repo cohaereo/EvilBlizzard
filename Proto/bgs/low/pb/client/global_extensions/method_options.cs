@@ -26,101 +26,29 @@ namespace bgs.protocol
         public void ResetId() => __pbn__Id = null;
         private uint? __pbn__Id;
 
-        [global::ProtoBuf.ProtoMember(2, Name = @"client_identity_routing")]
-        [global::System.ComponentModel.DefaultValue(ClientIdentityRoutingType.ClientIdentityRoutingDisabled)]
-        public ClientIdentityRoutingType ClientIdentityRouting
-        {
-            get => __pbn__ClientIdentityRouting ?? ClientIdentityRoutingType.ClientIdentityRoutingDisabled;
-            set => __pbn__ClientIdentityRouting = value;
-        }
-        public bool ShouldSerializeClientIdentityRouting() => __pbn__ClientIdentityRouting != null;
-        public void ResetClientIdentityRouting() => __pbn__ClientIdentityRouting = null;
-        private ClientIdentityRoutingType? __pbn__ClientIdentityRouting;
-
-        [global::ProtoBuf.ProtoMember(3, Name = @"enable_fanout")]
-        public bool EnableFanout
-        {
-            get => __pbn__EnableFanout.GetValueOrDefault();
-            set => __pbn__EnableFanout = value;
-        }
-        public bool ShouldSerializeEnableFanout() => __pbn__EnableFanout != null;
-        public void ResetEnableFanout() => __pbn__EnableFanout = null;
-        private bool? __pbn__EnableFanout;
-
-        [global::ProtoBuf.ProtoMember(4, Name = @"legacy_fanout_replacement")]
+        [global::ProtoBuf.ProtoMember(2, Name = @"topic")]
         [global::System.ComponentModel.DefaultValue("")]
-        public string LegacyFanoutReplacement
+        public string Topic
         {
-            get => __pbn__LegacyFanoutReplacement ?? "";
-            set => __pbn__LegacyFanoutReplacement = value;
+            get => __pbn__Topic ?? "";
+            set => __pbn__Topic = value;
         }
-        public bool ShouldSerializeLegacyFanoutReplacement() => __pbn__LegacyFanoutReplacement != null;
-        public void ResetLegacyFanoutReplacement() => __pbn__LegacyFanoutReplacement = null;
-        private string __pbn__LegacyFanoutReplacement;
+        public bool ShouldSerializeTopic() => __pbn__Topic != null;
+        public void ResetTopic() => __pbn__Topic = null;
+        private string __pbn__Topic;
 
-        [global::ProtoBuf.ProtoMember(5, Name = @"forward_key")]
-        [global::System.ComponentModel.DefaultValue("")]
-        public string ForwardKey
+        [global::ProtoBuf.ProtoMember(3, Name = @"custom_select_shard")]
+        public bool CustomSelectShard
         {
-            get => __pbn__ForwardKey ?? "";
-            set => __pbn__ForwardKey = value;
+            get => __pbn__CustomSelectShard.GetValueOrDefault();
+            set => __pbn__CustomSelectShard = value;
         }
-        public bool ShouldSerializeForwardKey() => __pbn__ForwardKey != null;
-        public void ResetForwardKey() => __pbn__ForwardKey = null;
-        private string __pbn__ForwardKey;
-
-        [global::ProtoBuf.ProtoMember(6, Name = @"idempotent")]
-        public bool Idempotent
-        {
-            get => __pbn__Idempotent.GetValueOrDefault();
-            set => __pbn__Idempotent = value;
-        }
-        public bool ShouldSerializeIdempotent() => __pbn__Idempotent != null;
-        public void ResetIdempotent() => __pbn__Idempotent = null;
-        private bool? __pbn__Idempotent;
-
-        [global::ProtoBuf.ProtoMember(7, Name = @"handle_destination_unreachable")]
-        public bool HandleDestinationUnreachable
-        {
-            get => __pbn__HandleDestinationUnreachable.GetValueOrDefault();
-            set => __pbn__HandleDestinationUnreachable = value;
-        }
-        public bool ShouldSerializeHandleDestinationUnreachable() => __pbn__HandleDestinationUnreachable != null;
-        public void ResetHandleDestinationUnreachable() => __pbn__HandleDestinationUnreachable = null;
-        private bool? __pbn__HandleDestinationUnreachable;
-
-        [global::ProtoBuf.ProtoMember(8, Name = @"custom_region_resolver")]
-        [global::System.ComponentModel.DefaultValue("")]
-        public string CustomRegionResolver
-        {
-            get => __pbn__CustomRegionResolver ?? "";
-            set => __pbn__CustomRegionResolver = value;
-        }
-        public bool ShouldSerializeCustomRegionResolver() => __pbn__CustomRegionResolver != null;
-        public void ResetCustomRegionResolver() => __pbn__CustomRegionResolver = null;
-        private string __pbn__CustomRegionResolver;
-
-        [global::ProtoBuf.ProtoMember(9, Name = @"explicit_region_routing")]
-        public bool ExplicitRegionRouting
-        {
-            get => __pbn__ExplicitRegionRouting.GetValueOrDefault();
-            set => __pbn__ExplicitRegionRouting = value;
-        }
-        public bool ShouldSerializeExplicitRegionRouting() => __pbn__ExplicitRegionRouting != null;
-        public void ResetExplicitRegionRouting() => __pbn__ExplicitRegionRouting = null;
-        private bool? __pbn__ExplicitRegionRouting;
+        public bool ShouldSerializeCustomSelectShard() => __pbn__CustomSelectShard != null;
+        public void ResetCustomSelectShard() => __pbn__CustomSelectShard = null;
+        private bool? __pbn__CustomSelectShard;
 
     }
 
-    // public static partial class Extensions
-    // {
-    //     public static BGSMethodOptions GetMethodOptions(this global::Google.Protobuf.Reflection.MethodOptions obj)
-    //         => obj == null ? default : global::ProtoBuf.Extensible.GetValue<BGSMethodOptions>(obj, 90000);
-    //
-    //     public static void SetMethodOptions(this global::Google.Protobuf.Reflection.MethodOptions obj, BGSMethodOptions value)
-    //         => global::ProtoBuf.Extensible.AppendValue<BGSMethodOptions>(obj, 90000, value);
-    //
-    // }
 }
 
 #pragma warning restore CS0612, CS0618, CS1591, CS3021, CS8981, IDE0079, IDE1006, RCS1036, RCS1057, RCS1085, RCS1192

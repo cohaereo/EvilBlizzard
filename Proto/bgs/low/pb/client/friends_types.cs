@@ -20,15 +20,16 @@ namespace bgs.protocol.friends.v1
         public global::bgs.protocol.EntityId AccountId { get; set; }
 
         [global::ProtoBuf.ProtoMember(2, Name = @"attribute")]
-        public global::System.Collections.Generic.List<global::bgs.protocol.Attribute> Attributes { get; } = new global::System.Collections.Generic.List<global::bgs.protocol.Attribute>();
+        public global::System.Collections.Generic.List<global::bgs.protocol.v2.Attribute> Attributes { get; } = new global::System.Collections.Generic.List<global::bgs.protocol.v2.Attribute>();
 
-        [global::ProtoBuf.ProtoMember(3, Name = @"role", IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(3, Name = @"role")]
         public uint[] Roles { get; set; }
 
         [global::ProtoBuf.ProtoMember(4, Name = @"privileges")]
+        [global::System.ComponentModel.DefaultValue(typeof(ulong), "0")]
         public ulong Privileges
         {
-            get => __pbn__Privileges.GetValueOrDefault();
+            get => __pbn__Privileges ?? 0ul;
             set => __pbn__Privileges = value;
         }
         public bool ShouldSerializePrivileges() => __pbn__Privileges != null;
@@ -36,7 +37,6 @@ namespace bgs.protocol.friends.v1
         private ulong? __pbn__Privileges;
 
         [global::ProtoBuf.ProtoMember(5, Name = @"attributes_epoch")]
-        [global::System.Obsolete]
         public ulong AttributesEpoch
         {
             get => __pbn__AttributesEpoch.GetValueOrDefault();
@@ -68,13 +68,14 @@ namespace bgs.protocol.friends.v1
         [global::ProtoBuf.ProtoMember(1, Name = @"account_id")]
         public global::bgs.protocol.EntityId AccountId { get; set; }
 
-        [global::ProtoBuf.ProtoMember(3, Name = @"role", IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(3, Name = @"role")]
         public uint[] Roles { get; set; }
 
         [global::ProtoBuf.ProtoMember(4, Name = @"privileges")]
+        [global::System.ComponentModel.DefaultValue(typeof(ulong), "0")]
         public ulong Privileges
         {
-            get => __pbn__Privileges.GetValueOrDefault();
+            get => __pbn__Privileges ?? 0ul;
             set => __pbn__Privileges = value;
         }
         public bool ShouldSerializePrivileges() => __pbn__Privileges != null;
@@ -143,6 +144,17 @@ namespace bgs.protocol.friends.v1
         public void ResetInviteeName() => __pbn__InviteeName = null;
         private string __pbn__InviteeName;
 
+        [global::ProtoBuf.ProtoMember(6, Name = @"invitation_message")]
+        [global::System.ComponentModel.DefaultValue("")]
+        public string InvitationMessage
+        {
+            get => __pbn__InvitationMessage ?? "";
+            set => __pbn__InvitationMessage = value;
+        }
+        public bool ShouldSerializeInvitationMessage() => __pbn__InvitationMessage != null;
+        public void ResetInvitationMessage() => __pbn__InvitationMessage = null;
+        private string __pbn__InvitationMessage;
+
         [global::ProtoBuf.ProtoMember(7, Name = @"creation_time")]
         public ulong CreationTime
         {
@@ -152,6 +164,16 @@ namespace bgs.protocol.friends.v1
         public bool ShouldSerializeCreationTime() => __pbn__CreationTime != null;
         public void ResetCreationTime() => __pbn__CreationTime = null;
         private ulong? __pbn__CreationTime;
+
+        [global::ProtoBuf.ProtoMember(8, Name = @"expiration_time")]
+        public ulong ExpirationTime
+        {
+            get => __pbn__ExpirationTime.GetValueOrDefault();
+            set => __pbn__ExpirationTime = value;
+        }
+        public bool ShouldSerializeExpirationTime() => __pbn__ExpirationTime != null;
+        public void ResetExpirationTime() => __pbn__ExpirationTime = null;
+        private ulong? __pbn__ExpirationTime;
 
         [global::ProtoBuf.ProtoMember(9, Name = @"program", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
         public uint Program
@@ -172,11 +194,11 @@ namespace bgs.protocol.friends.v1
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
             => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
 
-        [global::ProtoBuf.ProtoMember(2, Name = @"role", IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(2, Name = @"role")]
         public uint[] Roles { get; set; }
 
         [global::ProtoBuf.ProtoMember(3, Name = @"attribute")]
-        public global::System.Collections.Generic.List<global::bgs.protocol.Attribute> Attributes { get; } = new global::System.Collections.Generic.List<global::bgs.protocol.Attribute>();
+        public global::System.Collections.Generic.List<global::bgs.protocol.v2.Attribute> Attributes { get; } = new global::System.Collections.Generic.List<global::bgs.protocol.v2.Attribute>();
 
     }
 
@@ -219,7 +241,7 @@ namespace bgs.protocol.friends.v1
         private uint? __pbn__Role;
 
         [global::ProtoBuf.ProtoMember(4, Name = @"attribute")]
-        public global::System.Collections.Generic.List<global::bgs.protocol.Attribute> Attributes { get; } = new global::System.Collections.Generic.List<global::bgs.protocol.Attribute>();
+        public global::System.Collections.Generic.List<global::bgs.protocol.v2.Attribute> Attributes { get; } = new global::System.Collections.Generic.List<global::bgs.protocol.v2.Attribute>();
 
         [global::ProtoBuf.ProtoMember(5, Name = @"creation_time")]
         public ulong CreationTime
@@ -272,11 +294,11 @@ namespace bgs.protocol.friends.v1
         public void ResetTargetBattleTag() => __pbn__TargetBattleTag = null;
         private string __pbn__TargetBattleTag;
 
-        [global::ProtoBuf.ProtoMember(6, Name = @"role", IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(6, Name = @"role")]
         public uint[] Roles { get; set; }
 
         [global::ProtoBuf.ProtoMember(8, Name = @"attribute")]
-        public global::System.Collections.Generic.List<global::bgs.protocol.Attribute> Attributes { get; } = new global::System.Collections.Generic.List<global::bgs.protocol.Attribute>();
+        public global::System.Collections.Generic.List<global::bgs.protocol.v2.Attribute> Attributes { get; } = new global::System.Collections.Generic.List<global::bgs.protocol.v2.Attribute>();
 
         [global::ProtoBuf.ProtoMember(9, Name = @"target_name")]
         [global::System.ComponentModel.DefaultValue("")]
@@ -289,17 +311,6 @@ namespace bgs.protocol.friends.v1
         public void ResetTargetName() => __pbn__TargetName = null;
         private string __pbn__TargetName;
 
-        [global::ProtoBuf.ProtoMember(10, Name = @"program", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
-        [global::System.Obsolete]
-        public uint Program
-        {
-            get => __pbn__Program.GetValueOrDefault();
-            set => __pbn__Program = value;
-        }
-        public bool ShouldSerializeProgram() => __pbn__Program != null;
-        public void ResetProgram() => __pbn__Program = null;
-        private uint? __pbn__Program;
-
     }
 
     [global::ProtoBuf.ProtoContract()]
@@ -310,7 +321,6 @@ namespace bgs.protocol.friends.v1
             => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
 
         [global::ProtoBuf.ProtoMember(1, Name = @"max_friends")]
-        [global::System.Obsolete]
         public uint MaxFriends
         {
             get => __pbn__MaxFriends.GetValueOrDefault();
@@ -321,7 +331,6 @@ namespace bgs.protocol.friends.v1
         private uint? __pbn__MaxFriends;
 
         [global::ProtoBuf.ProtoMember(2, Name = @"max_received_invitations")]
-        [global::System.Obsolete]
         public uint MaxReceivedInvitations
         {
             get => __pbn__MaxReceivedInvitations.GetValueOrDefault();
@@ -332,7 +341,6 @@ namespace bgs.protocol.friends.v1
         private uint? __pbn__MaxReceivedInvitations;
 
         [global::ProtoBuf.ProtoMember(3, Name = @"max_sent_invitations")]
-        [global::System.Obsolete]
         public uint MaxSentInvitations
         {
             get => __pbn__MaxSentInvitations.GetValueOrDefault();
@@ -372,16 +380,6 @@ namespace bgs.protocol.friends.v1
         public bool ShouldSerializeRole() => __pbn__Role != null;
         public void ResetRole() => __pbn__Role = null;
         private uint? __pbn__Role;
-
-        [global::ProtoBuf.ProtoMember(2, Name = @"program", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
-        public uint Program
-        {
-            get => __pbn__Program.GetValueOrDefault();
-            set => __pbn__Program = value;
-        }
-        public bool ShouldSerializeProgram() => __pbn__Program != null;
-        public void ResetProgram() => __pbn__Program = null;
-        private uint? __pbn__Program;
 
     }
 
