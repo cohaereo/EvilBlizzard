@@ -55,6 +55,6 @@ Sec-WebSocket-Protocol: v1.rpc.battle.net
 
     public void Close()
     {
-        _stream.Close();
+        _stream.Dispose();
     }
 }

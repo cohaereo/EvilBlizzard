@@ -1,4 +1,4 @@
-using System.Text;
+using System.Text.Json;
 using bgs.protocol;
 using bgs.protocol.authentication.v1;
 
@@ -18,7 +18,7 @@ public class AuthenticationService : Service
     [ServiceMethod(1)]
     public NoData Logon(LogonRequest request, RequestContext ctx)
     {
-        Console.WriteLine($"AuthenticationService::Logon - email={request.Email} version={request.Version} program={request.Program}");
+        Console.WriteLine($"AuthenticationService::Logon - request={JsonSerializer.Serialize(request)}");
 
         Random.Shared.NextBytes(SessionKey);
         var logonResult = new LogonResult
@@ -48,7 +48,7 @@ public class AuthenticationService : Service
     {
         return new GenerateWebCredentialsResponse
         {
-            WebCredentials = Encoding.UTF8.GetBytes("web credentials say hi")
+            WebCredentials = "CN-97e2280792852a25e356fc9897f8bcd5-525139407"u8.ToArray()
         };
     }
 }

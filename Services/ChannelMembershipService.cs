@@ -1,3 +1,4 @@
+using bgs.protocol;
 using bgs.protocol.channel.v2.membership;
 
 namespace EvilBlizzard.Services;
@@ -6,8 +7,8 @@ namespace EvilBlizzard.Services;
 public class ChannelMembershipService : Service
 {
     [ServiceMethod(1)]
-    public void Subscribe(SubscribeRequest request)
+    public NoData Subscribe(SubscribeRequest request)
     {
-        // return new NoData();
-    }
+        return new NoData();
+                }
 }

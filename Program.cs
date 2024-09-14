@@ -30,7 +30,7 @@ internal class Program
                      new UserManagerService(),
                      new AccountService(),
                      new WhisperService(),
-                     new ResourceService(),             
+                     new ResourceService(),
                      new ChannelMembershipService(),
                      new PresenceService()
                  })
@@ -67,6 +67,7 @@ internal class Program
                     {
                         var closeReason = (WebSocketFrame.StatusCode)BitConverter.ToUInt16(frame.Data[..2].Reverse().ToArray());
                         Console.WriteLine($"Closing connection with reason {closeReason}");
+                        client.Close();
                         break;
                     }
 
@@ -84,9 +85,7 @@ internal class Program
                     }
                     else
                     {
-                        // throw new Exception($"Unknown service hash=0x{packet.Header.ServiceHash:X} method={packet.Header.MethodId}");
-                        Console.WriteLine($"Unknown service hash=0x{packet.Header.ServiceHash:X} method={packet.Header.MethodId}");
-                        continue;
+                        throw new Exception($"Unknown service hash=0x{packet.Header.ServiceHash:X} method={packet.Header.MethodId}");
                     }
 
                     if (result != null)
@@ -101,7 +100,9 @@ internal class Program
             }
             catch (Exception ex)
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine($"Exception: {ex}");
+                Console.ResetColor();
             }
             finally
             {

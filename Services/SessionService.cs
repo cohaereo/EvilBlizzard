@@ -17,19 +17,32 @@ public class SessionService : Service
     {
         Console.WriteLine($"SessionService::CreateSession - {JsonSerializer.Serialize(request)}");
 
+        var start = "A7B5C8B0593FFEC10000000";
+        var end = "BCABD";
+        var session = start + Random.Shared.Next(0, 9) + Random.Shared.Next(0, 9) + Random.Shared.Next(0, 9) + Random.Shared.Next(0, 9) + end;
+
         var onSessionCreated = new SessionCreatedNotification
         {
-            SessionId = "destiny_n_chill"
-            // ClientId = "someclient",
-            // SessionKey = AuthenticationService.SessionKey
+            SessionId = session,
+            Identity = request.Identity,
+            Reason = 0
         };
         // OnSessionCreated
         ctx.SendNotification(SessionListener.ServiceHash, 1, onSessionCreated);
 
         return new CreateSessionResponse
         {
-            SessionId = "destiny_n_chill"
+            SessionId = session
             // TimeoutS = uint.MaxValue
+        };
+    }
+
+    [ServiceMethod(10)]
+    public GetSignedSessionStateResponse GetSignedSessionState(GetSignedSessionStateRequest request, RequestContext ctx)
+    {
+        return new GetSignedSessionStateResponse
+        {
+            Token = "eyJ0eXAiOiJKV1QiLCJlbnYiOiJwcm9kLmV1IiwiYWxnIjoiUlMyNTYiLCJraWQiOiJmMDE5NzgzMi0zMWMwLTQzN2MtOTc2NC1iMzliOTM5MDJlNWMiLCJrdHkiOiJSU0EifQ"
         };
     }
 }
