@@ -502,6 +502,18 @@ namespace bgs.protocol.account.v1
     }
 
     [global::ProtoBuf.ProtoContract()]
+    public partial class OptIns : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"ids", IsPacked = true)]
+        public ulong[] Ids { get; set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
     public partial class AccountLevelInfo : global::ProtoBuf.IExtensible
     {
         private global::ProtoBuf.IExtension __pbn__extensionData;
@@ -666,6 +678,30 @@ namespace bgs.protocol.account.v1
         public bool ShouldSerializePhoneNumber() => __pbn__PhoneNumber != null;
         public void ResetPhoneNumber() => __pbn__PhoneNumber = null;
         private string __pbn__PhoneNumber;
+
+        [global::ProtoBuf.ProtoMember(20, Name = @"birthdate")]
+        [global::System.ComponentModel.DefaultValue("")]
+        public string Birthdate
+        {
+            get => __pbn__Birthdate ?? "";
+            set => __pbn__Birthdate = value;
+        }
+        public bool ShouldSerializeBirthdate() => __pbn__Birthdate != null;
+        public void ResetBirthdate() => __pbn__Birthdate = null;
+        private string __pbn__Birthdate;
+
+        [global::ProtoBuf.ProtoMember(21, Name = @"legal_country_feature_restrictions_applied")]
+        public bool LegalCountryFeatureRestrictionsApplied
+        {
+            get => __pbn__LegalCountryFeatureRestrictionsApplied.GetValueOrDefault();
+            set => __pbn__LegalCountryFeatureRestrictionsApplied = value;
+        }
+        public bool ShouldSerializeLegalCountryFeatureRestrictionsApplied() => __pbn__LegalCountryFeatureRestrictionsApplied != null;
+        public void ResetLegalCountryFeatureRestrictionsApplied() => __pbn__LegalCountryFeatureRestrictionsApplied = null;
+        private bool? __pbn__LegalCountryFeatureRestrictionsApplied;
+
+        [global::ProtoBuf.ProtoMember(22, Name = @"opt_ins")]
+        public OptIns OptIns { get; set; }
 
     }
 
@@ -1190,6 +1226,16 @@ namespace bgs.protocol.account.v1
         [global::ProtoBuf.ProtoMember(9, Name = @"igr_id")]
         public IgrId IgrId { get; set; }
 
+        [global::ProtoBuf.ProtoMember(10, Name = @"platform_id", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
+        public uint PlatformId
+        {
+            get => __pbn__PlatformId.GetValueOrDefault();
+            set => __pbn__PlatformId = value;
+        }
+        public bool ShouldSerializePlatformId() => __pbn__PlatformId != null;
+        public void ResetPlatformId() => __pbn__PlatformId = null;
+        private uint? __pbn__PlatformId;
+
     }
 
     [global::ProtoBuf.ProtoContract()]
@@ -1480,34 +1526,28 @@ namespace bgs.protocol.account.v1
             => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
 
         [global::ProtoBuf.ProtoMember(1, Name = @"game_account")]
-        public GameAccountHandle GameAccount
-        {
-            get => __pbn__type.Is(1) ? ((GameAccountHandle)__pbn__type.Object) : default;
-            set => __pbn__type = new global::ProtoBuf.DiscriminatedUnion32Object(1, value);
-        }
-        public bool ShouldSerializeGameAccount() => __pbn__type.Is(1);
-        public void ResetGameAccount() => global::ProtoBuf.DiscriminatedUnion32Object.Reset(ref __pbn__type, 1);
-
-        private global::ProtoBuf.DiscriminatedUnion32Object __pbn__type;
+        public GameAccountHandle GameAccount { get; set; }
 
         [global::ProtoBuf.ProtoMember(2, Name = @"external_id", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
         public uint ExternalId
         {
-            get => __pbn__type.Is(2) ? __pbn__type.UInt32 : default;
-            set => __pbn__type = new global::ProtoBuf.DiscriminatedUnion32Object(2, value);
+            get => __pbn__ExternalId.GetValueOrDefault();
+            set => __pbn__ExternalId = value;
         }
-        public bool ShouldSerializeExternalId() => __pbn__type.Is(2);
-        public void ResetExternalId() => global::ProtoBuf.DiscriminatedUnion32Object.Reset(ref __pbn__type, 2);
+        public bool ShouldSerializeExternalId() => __pbn__ExternalId != null;
+        public void ResetExternalId() => __pbn__ExternalId = null;
+        private uint? __pbn__ExternalId;
 
         [global::ProtoBuf.ProtoMember(3, Name = @"uuid")]
         [global::System.ComponentModel.DefaultValue("")]
         public string Uuid
         {
-            get => __pbn__type.Is(3) ? ((string)__pbn__type.Object) : "";
-            set => __pbn__type = new global::ProtoBuf.DiscriminatedUnion32Object(3, value);
+            get => __pbn__Uuid ?? "";
+            set => __pbn__Uuid = value;
         }
-        public bool ShouldSerializeUuid() => __pbn__type.Is(3);
-        public void ResetUuid() => global::ProtoBuf.DiscriminatedUnion32Object.Reset(ref __pbn__type, 3);
+        public bool ShouldSerializeUuid() => __pbn__Uuid != null;
+        public void ResetUuid() => __pbn__Uuid = null;
+        private string __pbn__Uuid;
 
     }
 

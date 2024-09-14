@@ -38,6 +38,28 @@ namespace bgs.protocol
 
     }
 
+    [global::ProtoBuf.ProtoContract()]
+    public partial class TitleIconContentHandle : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"title_id")]
+        public uint TitleId
+        {
+            get => __pbn__TitleId.GetValueOrDefault();
+            set => __pbn__TitleId = value;
+        }
+        public bool ShouldSerializeTitleId() => __pbn__TitleId != null;
+        public void ResetTitleId() => __pbn__TitleId = null;
+        private uint? __pbn__TitleId;
+
+        [global::ProtoBuf.ProtoMember(2, Name = @"content_handle")]
+        public ContentHandle ContentHandle { get; set; }
+
+    }
+
 }
 
 #pragma warning restore CS0612, CS0618, CS1591, CS3021, CS8981, IDE0079, IDE1006, RCS1036, RCS1057, RCS1085, RCS1192

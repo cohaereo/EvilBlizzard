@@ -27,6 +27,16 @@ namespace bgs.protocol
         public void ResetDescriptorName() => __pbn__DescriptorName = null;
         private string __pbn__DescriptorName;
 
+        [global::ProtoBuf.ProtoMember(2, Name = @"descriptor_hash")]
+        public uint DescriptorHash
+        {
+            get => __pbn__DescriptorHash.GetValueOrDefault();
+            set => __pbn__DescriptorHash = value;
+        }
+        public bool ShouldSerializeDescriptorHash() => __pbn__DescriptorHash != null;
+        public void ResetDescriptorHash() => __pbn__DescriptorHash = null;
+        private uint? __pbn__DescriptorHash;
+
         [global::ProtoBuf.ProtoMember(4, Name = @"version")]
         public uint Version
         {
@@ -80,15 +90,27 @@ namespace bgs.protocol
         public void ResetApiType() => __pbn__ApiType = null;
         private string __pbn__ApiType;
 
+        [global::ProtoBuf.ProtoMember(9, Name = @"is_global")]
+        public bool IsGlobal
+        {
+            get => __pbn__IsGlobal.GetValueOrDefault();
+            set => __pbn__IsGlobal = value;
+        }
+        public bool ShouldSerializeIsGlobal() => __pbn__IsGlobal != null;
+        public void ResetIsGlobal() => __pbn__IsGlobal = null;
+        private bool? __pbn__IsGlobal;
+
         [global::ProtoBuf.ProtoContract()]
         public enum ServiceType
         {
             [global::ProtoBuf.ProtoEnum(Name = @"SERVICE_TYPE_RPC")]
             ServiceTypeRpc = 0,
+            [global::ProtoBuf.ProtoEnum(Name = @"SERVICE_TYPE_RPC_DIRECT")]
+            ServiceTypeRpcDirect = 1,
             [global::ProtoBuf.ProtoEnum(Name = @"SERVICE_TYPE_EVENT")]
-            ServiceTypeEvent = 1,
+            ServiceTypeEvent = 2,
             [global::ProtoBuf.ProtoEnum(Name = @"SERVICE_TYPE_EVENT_BROADCAST")]
-            ServiceTypeEventBroadcast = 2,
+            ServiceTypeEventBroadcast = 3,
         }
 
     }
@@ -131,7 +153,7 @@ namespace bgs.protocol
         private bool? __pbn__UseClientId;
 
     }
-    
+
     // public static partial class Extensions
     // {
     //     public static BGSServiceOptions GetServiceOptions(this global::Google.Protobuf.Reflection.ServiceOptions obj)

@@ -240,6 +240,17 @@ namespace bgs.protocol
         public void ResetServiceHash() => __pbn__ServiceHash = null;
         private uint? __pbn__ServiceHash;
 
+        [global::ProtoBuf.ProtoMember(12, Name = @"request_id")]
+        [global::System.ComponentModel.DefaultValue("")]
+        public string RequestId
+        {
+            get => __pbn__RequestId ?? "";
+            set => __pbn__RequestId = value;
+        }
+        public bool ShouldSerializeRequestId() => __pbn__RequestId != null;
+        public void ResetRequestId() => __pbn__RequestId = null;
+        private string __pbn__RequestId;
+
         [global::ProtoBuf.ProtoMember(13, Name = @"client_id")]
         [global::System.ComponentModel.DefaultValue("")]
         public string ClientId

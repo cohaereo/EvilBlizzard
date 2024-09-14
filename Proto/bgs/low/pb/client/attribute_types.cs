@@ -126,7 +126,7 @@ namespace bgs.protocol
             => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
 
         [global::ProtoBuf.ProtoMember(1, Name = @"op", IsRequired = true)]
-        public Operation Op { get; set; } = Operation.MatchNone;
+        public Operation Op { get; set; }
 
         [global::ProtoBuf.ProtoMember(2, Name = @"attribute")]
         public global::System.Collections.Generic.List<Attribute> Attributes { get; } = new global::System.Collections.Generic.List<Attribute>();

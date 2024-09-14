@@ -1,10 +1,11 @@
 using bgs.protocol;
 using bgs.protocol.connection.v1;
+using EvilBlizzard.Extensions;
 
 namespace EvilBlizzard.Services;
 
 [Service(0x65446991)]
-public class ConnectionService : IService
+public class ConnectionService : Service
 {
     [ServiceMethod(1)]
     public ConnectResponse Connect(ConnectRequest request)
@@ -16,10 +17,23 @@ public class ConnectionService : IService
         {
             ServerId = new ProcessId
             {
-                Epoch = (uint)unixTime,
+                Epoch = DateTime.Now.ToUnixTime(),
                 Label = (uint)Environment.ProcessId
             },
-            ServerTime = (uint)DateTimeOffset.UtcNow.ToUnixTimeMilliseconds()
+            ClientId = request.ClientId,
+            UseBindlessRpc = request.UseBindlessRpc
         };
+    }
+
+    [ServiceMethod(5)]
+    public void KeepAlive(NoData _)
+    {
+        // 👍
+    }
+
+    [ServiceMethod(7)]
+    public void RequestDisconnect(DisconnectRequest request)
+    {
+        Console.WriteLine($"ConnectionService::RequestDisconnect - error_code={request.ErrorCode}");
     }
 }

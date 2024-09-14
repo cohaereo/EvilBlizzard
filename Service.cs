@@ -3,12 +3,16 @@ using ProtoBuf;
 
 namespace EvilBlizzard;
 
-public abstract class IService
+public abstract class Service
 {
-    public object? Dispatch(uint methodId, byte[] data)
+    public static uint GetServiceHash(Type type)
+    {
+        return type.GetCustomAttribute<ServiceAttribute>()?.ServiceHash ?? 0;
+    }
+
+    public object? Dispatch(uint methodId, byte[] data, RequestContext context)
     {
         // Get all methods
-        var methods = GetType().GetMethods();
         var (_, method) = GetType().GetMethods()
             .Select(m => (info: m.GetCustomAttribute<ServiceMethodAttribute>(), m))
             .FirstOrDefault(tuple => tuple.info?.MethodId == methodId);
@@ -19,7 +23,11 @@ public abstract class IService
             var dataParam = method.GetParameters()[0];
             var deserialize = typeof(Serializer).GetMethod("Deserialize", new[] { typeof(Stream) });
             var deserializeMethod = deserialize!.MakeGenericMethod(dataParam.ParameterType);
-            var result = method.Invoke(this, new[] { deserializeMethod.Invoke(null, new object[] { dataStream }) });
+            var parameters = new List<object> { deserializeMethod.Invoke(null, [dataStream]) };
+            if (method.GetParameters().FirstOrDefault(p => p.ParameterType == typeof(RequestContext)) != null)
+                parameters.Add(context);
+
+            var result = method.Invoke(this, parameters.ToArray());
 
             if (result != null && result.GetType() != typeof(void))
                 return result;
@@ -30,6 +38,14 @@ public abstract class IService
         {
             throw new NotImplementedException($"Method {methodId} for service {GetType().Name} not implemented");
         }
+    }
+
+    public string? GetMethodName(uint methodId)
+    {
+        var (_, method) = GetType().GetMethods()
+            .Select(m => (info: m.GetCustomAttribute<ServiceMethodAttribute>(), m))
+            .FirstOrDefault(tuple => tuple.info?.MethodId == methodId);
+        return method?.Name;
     }
 }
 

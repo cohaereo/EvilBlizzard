@@ -89,6 +89,27 @@ namespace bgs.protocol
         public void ResetHandleDestinationUnreachable() => __pbn__HandleDestinationUnreachable = null;
         private bool? __pbn__HandleDestinationUnreachable;
 
+        [global::ProtoBuf.ProtoMember(8, Name = @"custom_region_resolver")]
+        [global::System.ComponentModel.DefaultValue("")]
+        public string CustomRegionResolver
+        {
+            get => __pbn__CustomRegionResolver ?? "";
+            set => __pbn__CustomRegionResolver = value;
+        }
+        public bool ShouldSerializeCustomRegionResolver() => __pbn__CustomRegionResolver != null;
+        public void ResetCustomRegionResolver() => __pbn__CustomRegionResolver = null;
+        private string __pbn__CustomRegionResolver;
+
+        [global::ProtoBuf.ProtoMember(9, Name = @"explicit_region_routing")]
+        public bool ExplicitRegionRouting
+        {
+            get => __pbn__ExplicitRegionRouting.GetValueOrDefault();
+            set => __pbn__ExplicitRegionRouting = value;
+        }
+        public bool ShouldSerializeExplicitRegionRouting() => __pbn__ExplicitRegionRouting != null;
+        public void ResetExplicitRegionRouting() => __pbn__ExplicitRegionRouting = null;
+        private bool? __pbn__ExplicitRegionRouting;
+
     }
 
     // public static partial class Extensions

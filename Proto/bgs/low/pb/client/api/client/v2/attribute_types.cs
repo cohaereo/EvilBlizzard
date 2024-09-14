@@ -19,59 +19,63 @@ namespace bgs.protocol.v2
         [global::ProtoBuf.ProtoMember(1, Name = @"bool_value")]
         public bool BoolValue
         {
-            get => __pbn__type.Is(1) ? __pbn__type.Boolean : default;
-            set => __pbn__type = new global::ProtoBuf.DiscriminatedUnion64Object(1, value);
+            get => __pbn__BoolValue.GetValueOrDefault();
+            set => __pbn__BoolValue = value;
         }
-        public bool ShouldSerializeBoolValue() => __pbn__type.Is(1);
-        public void ResetBoolValue() => global::ProtoBuf.DiscriminatedUnion64Object.Reset(ref __pbn__type, 1);
-
-        private global::ProtoBuf.DiscriminatedUnion64Object __pbn__type;
+        public bool ShouldSerializeBoolValue() => __pbn__BoolValue != null;
+        public void ResetBoolValue() => __pbn__BoolValue = null;
+        private bool? __pbn__BoolValue;
 
         [global::ProtoBuf.ProtoMember(2, Name = @"int_value")]
         public long IntValue
         {
-            get => __pbn__type.Is(2) ? __pbn__type.Int64 : default;
-            set => __pbn__type = new global::ProtoBuf.DiscriminatedUnion64Object(2, value);
+            get => __pbn__IntValue.GetValueOrDefault();
+            set => __pbn__IntValue = value;
         }
-        public bool ShouldSerializeIntValue() => __pbn__type.Is(2);
-        public void ResetIntValue() => global::ProtoBuf.DiscriminatedUnion64Object.Reset(ref __pbn__type, 2);
+        public bool ShouldSerializeIntValue() => __pbn__IntValue != null;
+        public void ResetIntValue() => __pbn__IntValue = null;
+        private long? __pbn__IntValue;
 
         [global::ProtoBuf.ProtoMember(3, Name = @"float_value")]
         public double FloatValue
         {
-            get => __pbn__type.Is(3) ? __pbn__type.Double : default;
-            set => __pbn__type = new global::ProtoBuf.DiscriminatedUnion64Object(3, value);
+            get => __pbn__FloatValue.GetValueOrDefault();
+            set => __pbn__FloatValue = value;
         }
-        public bool ShouldSerializeFloatValue() => __pbn__type.Is(3);
-        public void ResetFloatValue() => global::ProtoBuf.DiscriminatedUnion64Object.Reset(ref __pbn__type, 3);
+        public bool ShouldSerializeFloatValue() => __pbn__FloatValue != null;
+        public void ResetFloatValue() => __pbn__FloatValue = null;
+        private double? __pbn__FloatValue;
 
         [global::ProtoBuf.ProtoMember(4, Name = @"string_value")]
         [global::System.ComponentModel.DefaultValue("")]
         public string StringValue
         {
-            get => __pbn__type.Is(4) ? ((string)__pbn__type.Object) : "";
-            set => __pbn__type = new global::ProtoBuf.DiscriminatedUnion64Object(4, value);
+            get => __pbn__StringValue ?? "";
+            set => __pbn__StringValue = value;
         }
-        public bool ShouldSerializeStringValue() => __pbn__type.Is(4);
-        public void ResetStringValue() => global::ProtoBuf.DiscriminatedUnion64Object.Reset(ref __pbn__type, 4);
+        public bool ShouldSerializeStringValue() => __pbn__StringValue != null;
+        public void ResetStringValue() => __pbn__StringValue = null;
+        private string __pbn__StringValue;
 
         [global::ProtoBuf.ProtoMember(5, Name = @"blob_value")]
         public byte[] BlobValue
         {
-            get => __pbn__type.Is(5) ? ((byte[])__pbn__type.Object) : default;
-            set => __pbn__type = new global::ProtoBuf.DiscriminatedUnion64Object(5, value);
+            get => __pbn__BlobValue;
+            set => __pbn__BlobValue = value;
         }
-        public bool ShouldSerializeBlobValue() => __pbn__type.Is(5);
-        public void ResetBlobValue() => global::ProtoBuf.DiscriminatedUnion64Object.Reset(ref __pbn__type, 5);
+        public bool ShouldSerializeBlobValue() => __pbn__BlobValue != null;
+        public void ResetBlobValue() => __pbn__BlobValue = null;
+        private byte[] __pbn__BlobValue;
 
         [global::ProtoBuf.ProtoMember(6, Name = @"uint_value")]
         public ulong UintValue
         {
-            get => __pbn__type.Is(6) ? __pbn__type.UInt64 : default;
-            set => __pbn__type = new global::ProtoBuf.DiscriminatedUnion64Object(6, value);
+            get => __pbn__UintValue.GetValueOrDefault();
+            set => __pbn__UintValue = value;
         }
-        public bool ShouldSerializeUintValue() => __pbn__type.Is(6);
-        public void ResetUintValue() => global::ProtoBuf.DiscriminatedUnion64Object.Reset(ref __pbn__type, 6);
+        public bool ShouldSerializeUintValue() => __pbn__UintValue != null;
+        public void ResetUintValue() => __pbn__UintValue = null;
+        private ulong? __pbn__UintValue;
 
     }
 

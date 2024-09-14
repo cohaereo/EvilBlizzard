@@ -78,78 +78,28 @@ namespace bgs.protocol
             => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
 
         [global::ProtoBuf.ProtoMember(1, Name = @"signed")]
-        public SignedFieldRestriction Signed
-        {
-            get => __pbn__type.Is(1) ? ((SignedFieldRestriction)__pbn__type.Object) : default;
-            set => __pbn__type = new global::ProtoBuf.DiscriminatedUnionObject(1, value);
-        }
-        public bool ShouldSerializeSigned() => __pbn__type.Is(1);
-        public void ResetSigned() => global::ProtoBuf.DiscriminatedUnionObject.Reset(ref __pbn__type, 1);
-
-        private global::ProtoBuf.DiscriminatedUnionObject __pbn__type;
+        public SignedFieldRestriction Signed { get; set; }
 
         [global::ProtoBuf.ProtoMember(2, Name = @"unsigned")]
-        public UnsignedFieldRestriction Unsigned
-        {
-            get => __pbn__type.Is(2) ? ((UnsignedFieldRestriction)__pbn__type.Object) : default;
-            set => __pbn__type = new global::ProtoBuf.DiscriminatedUnionObject(2, value);
-        }
-        public bool ShouldSerializeUnsigned() => __pbn__type.Is(2);
-        public void ResetUnsigned() => global::ProtoBuf.DiscriminatedUnionObject.Reset(ref __pbn__type, 2);
+        public UnsignedFieldRestriction Unsigned { get; set; }
 
         [global::ProtoBuf.ProtoMember(3, Name = @"float")]
-        public FloatFieldRestriction Float
-        {
-            get => __pbn__type.Is(3) ? ((FloatFieldRestriction)__pbn__type.Object) : default;
-            set => __pbn__type = new global::ProtoBuf.DiscriminatedUnionObject(3, value);
-        }
-        public bool ShouldSerializeFloat() => __pbn__type.Is(3);
-        public void ResetFloat() => global::ProtoBuf.DiscriminatedUnionObject.Reset(ref __pbn__type, 3);
+        public FloatFieldRestriction Float { get; set; }
 
         [global::ProtoBuf.ProtoMember(4, Name = @"string")]
-        public StringFieldRestriction String
-        {
-            get => __pbn__type.Is(4) ? ((StringFieldRestriction)__pbn__type.Object) : default;
-            set => __pbn__type = new global::ProtoBuf.DiscriminatedUnionObject(4, value);
-        }
-        public bool ShouldSerializeString() => __pbn__type.Is(4);
-        public void ResetString() => global::ProtoBuf.DiscriminatedUnionObject.Reset(ref __pbn__type, 4);
+        public StringFieldRestriction String { get; set; }
 
         [global::ProtoBuf.ProtoMember(5, Name = @"repeated")]
-        public RepeatedFieldRestriction Repeated
-        {
-            get => __pbn__type.Is(5) ? ((RepeatedFieldRestriction)__pbn__type.Object) : default;
-            set => __pbn__type = new global::ProtoBuf.DiscriminatedUnionObject(5, value);
-        }
-        public bool ShouldSerializeRepeated() => __pbn__type.Is(5);
-        public void ResetRepeated() => global::ProtoBuf.DiscriminatedUnionObject.Reset(ref __pbn__type, 5);
+        public RepeatedFieldRestriction Repeated { get; set; }
 
         [global::ProtoBuf.ProtoMember(6, Name = @"message")]
-        public MessageFieldRestriction Message
-        {
-            get => __pbn__type.Is(6) ? ((MessageFieldRestriction)__pbn__type.Object) : default;
-            set => __pbn__type = new global::ProtoBuf.DiscriminatedUnionObject(6, value);
-        }
-        public bool ShouldSerializeMessage() => __pbn__type.Is(6);
-        public void ResetMessage() => global::ProtoBuf.DiscriminatedUnionObject.Reset(ref __pbn__type, 6);
+        public MessageFieldRestriction Message { get; set; }
 
         [global::ProtoBuf.ProtoMember(7, Name = @"entity_id")]
-        public EntityIdRestriction EntityId
-        {
-            get => __pbn__type.Is(7) ? ((EntityIdRestriction)__pbn__type.Object) : default;
-            set => __pbn__type = new global::ProtoBuf.DiscriminatedUnionObject(7, value);
-        }
-        public bool ShouldSerializeEntityId() => __pbn__type.Is(7);
-        public void ResetEntityId() => global::ProtoBuf.DiscriminatedUnionObject.Reset(ref __pbn__type, 7);
+        public EntityIdRestriction EntityId { get; set; }
 
         [global::ProtoBuf.ProtoMember(8, Name = @"bytes")]
-        public StringFieldRestriction Bytes
-        {
-            get => __pbn__type.Is(8) ? ((StringFieldRestriction)__pbn__type.Object) : default;
-            set => __pbn__type = new global::ProtoBuf.DiscriminatedUnionObject(8, value);
-        }
-        public bool ShouldSerializeBytes() => __pbn__type.Is(8);
-        public void ResetBytes() => global::ProtoBuf.DiscriminatedUnionObject.Reset(ref __pbn__type, 8);
+        public StringFieldRestriction Bytes { get; set; }
 
     }
 
@@ -174,60 +124,22 @@ namespace bgs.protocol
         private bool? __pbn__Unique;
 
         [global::ProtoBuf.ProtoMember(3, Name = @"signed")]
-        public SignedFieldRestriction Signed
-        {
-            get => __pbn__type.Is(3) ? ((SignedFieldRestriction)__pbn__type.Object) : default;
-            set => __pbn__type = new global::ProtoBuf.DiscriminatedUnionObject(3, value);
-        }
-        public bool ShouldSerializeSigned() => __pbn__type.Is(3);
-        public void ResetSigned() => global::ProtoBuf.DiscriminatedUnionObject.Reset(ref __pbn__type, 3);
-
-        private global::ProtoBuf.DiscriminatedUnionObject __pbn__type;
+        public SignedFieldRestriction Signed { get; set; }
 
         [global::ProtoBuf.ProtoMember(4, Name = @"unsigned")]
-        public UnsignedFieldRestriction Unsigned
-        {
-            get => __pbn__type.Is(4) ? ((UnsignedFieldRestriction)__pbn__type.Object) : default;
-            set => __pbn__type = new global::ProtoBuf.DiscriminatedUnionObject(4, value);
-        }
-        public bool ShouldSerializeUnsigned() => __pbn__type.Is(4);
-        public void ResetUnsigned() => global::ProtoBuf.DiscriminatedUnionObject.Reset(ref __pbn__type, 4);
+        public UnsignedFieldRestriction Unsigned { get; set; }
 
         [global::ProtoBuf.ProtoMember(5, Name = @"float")]
-        public FloatFieldRestriction Float
-        {
-            get => __pbn__type.Is(5) ? ((FloatFieldRestriction)__pbn__type.Object) : default;
-            set => __pbn__type = new global::ProtoBuf.DiscriminatedUnionObject(5, value);
-        }
-        public bool ShouldSerializeFloat() => __pbn__type.Is(5);
-        public void ResetFloat() => global::ProtoBuf.DiscriminatedUnionObject.Reset(ref __pbn__type, 5);
+        public FloatFieldRestriction Float { get; set; }
 
         [global::ProtoBuf.ProtoMember(6, Name = @"string")]
-        public StringFieldRestriction String
-        {
-            get => __pbn__type.Is(6) ? ((StringFieldRestriction)__pbn__type.Object) : default;
-            set => __pbn__type = new global::ProtoBuf.DiscriminatedUnionObject(6, value);
-        }
-        public bool ShouldSerializeString() => __pbn__type.Is(6);
-        public void ResetString() => global::ProtoBuf.DiscriminatedUnionObject.Reset(ref __pbn__type, 6);
+        public StringFieldRestriction String { get; set; }
 
         [global::ProtoBuf.ProtoMember(7, Name = @"entity_id")]
-        public EntityIdRestriction EntityId
-        {
-            get => __pbn__type.Is(7) ? ((EntityIdRestriction)__pbn__type.Object) : default;
-            set => __pbn__type = new global::ProtoBuf.DiscriminatedUnionObject(7, value);
-        }
-        public bool ShouldSerializeEntityId() => __pbn__type.Is(7);
-        public void ResetEntityId() => global::ProtoBuf.DiscriminatedUnionObject.Reset(ref __pbn__type, 7);
+        public EntityIdRestriction EntityId { get; set; }
 
         [global::ProtoBuf.ProtoMember(8, Name = @"bytes")]
-        public StringFieldRestriction Bytes
-        {
-            get => __pbn__type.Is(8) ? ((StringFieldRestriction)__pbn__type.Object) : default;
-            set => __pbn__type = new global::ProtoBuf.DiscriminatedUnionObject(8, value);
-        }
-        public bool ShouldSerializeBytes() => __pbn__type.Is(8);
-        public void ResetBytes() => global::ProtoBuf.DiscriminatedUnionObject.Reset(ref __pbn__type, 8);
+        public StringFieldRestriction Bytes { get; set; }
 
     }
 
@@ -365,7 +277,7 @@ namespace bgs.protocol
         [global::ProtoBuf.ProtoEnum(Name = @"HEX")]
         Hex = 2,
     }
-
+    
     // public static partial class Extensions
     // {
     //     public static BGSFieldOptions GetFieldOptions(this global::Google.Protobuf.Reflection.FieldOptions obj)
