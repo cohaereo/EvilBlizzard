@@ -49,7 +49,7 @@ message Header {
 	repeated ProcessId	forward_targets	= 10;
 	optional fixed32	service_hash	= 11;
 	optional TraceInfo	trace_info	= 12;
-}
+}				
 
 message KafkaHeader {
 	optional fixed32	service_hash	= 1;

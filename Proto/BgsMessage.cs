@@ -5,8 +5,6 @@ namespace EvilBlizzard;
 
 public class BgsMessage
 {
-    private static uint requestToken;
-
     public BgsMessage(byte[] data)
     {
         HeaderLength = BitConverter.ToInt16(data[..2].Reverse().ToArray());
@@ -43,7 +41,6 @@ public class BgsMessage
     public byte[] Serialize()
     {
         var rawHeader = new MemoryStream();
-        Header.Token = requestToken++;
         Serializer.Serialize(rawHeader, Header);
         return BitConverter.GetBytes(Convert.ToUInt16(rawHeader.Length)).Reverse()
             .Concat(rawHeader.ToArray())

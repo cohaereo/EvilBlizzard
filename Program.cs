@@ -30,7 +30,9 @@ internal class Program
                      new UserManagerService(),
                      new AccountService(),
                      new WhisperService(),
-                     new ResourceService()
+                     new ResourceService(),             
+                     new ChannelMembershipService(),
+                     new PresenceService()
                  })
         {
             var serviceHash = svc.GetType().GetCustomAttribute<ServiceAttribute>()?.ServiceHash;
@@ -76,12 +78,15 @@ internal class Program
                     object? result;
                     if (services.TryGetValue(packet.Header.ServiceHash, out var service))
                     {
-                        Console.WriteLine($"Executing service method {service.GetType().Name}::{service.GetMethodName(packet.Header.MethodId) ?? "???"}");
+                        Console.WriteLine(
+                            $"R{packet.Header.Token} Executing service method {service.GetType().Name}::{service.GetMethodName(packet.Header.MethodId) ?? "???"}");
                         result = service.Dispatch(packet.Header.MethodId, packet.MessageData, context);
                     }
                     else
                     {
-                        throw new Exception($"Unknown service hash=0x{packet.Header.ServiceHash:X} method={packet.Header.MethodId}");
+                        // throw new Exception($"Unknown service hash=0x{packet.Header.ServiceHash:X} method={packet.Header.MethodId}");
+                        Console.WriteLine($"Unknown service hash=0x{packet.Header.ServiceHash:X} method={packet.Header.MethodId}");
+                        continue;
                     }
 
                     if (result != null)

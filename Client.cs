@@ -49,7 +49,8 @@ Sec-WebSocket-Protocol: v1.rpc.battle.net
 
     public void Send(BgsMessage message)
     {
-        WebSocketFrame.Write(_stream, message.Serialize());
+        var bytes = message.Serialize();
+        WebSocketFrame.Write(_stream, bytes);
     }
 
     public void Close()
