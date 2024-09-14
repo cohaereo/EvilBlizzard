@@ -1,14 +1,15 @@
 using System.Net;
 using System.Net.Security;
 using System.Net.Sockets;
+using System.Reflection;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Text.RegularExpressions;
 using bgs.protocol;
-using bgs.protocol.connection.v1;
 using EvilBlizzard;
 using EvilBlizzard.Proto;
+using EvilBlizzard.Services;
 using ProtoBuf;
 
 internal class Program
@@ -24,18 +25,31 @@ internal class Program
         listener.Start();
         Console.WriteLine($"TLS Server is listening on port {port}");
 
+        var services = new Dictionary<uint, IService>();
+        foreach (var svc in new IService[]
+                 {
+                     new ConnectionService(),
+                     new AuthenticationService()
+                 })
+        {
+            var serviceHash = svc.GetType().GetCustomAttribute<ServiceAttribute>()?.ServiceHash;
+            if (serviceHash == null)
+                throw new ArgumentException($"Service {svc.GetType().Name} must have ServiceAttribute with ServiceHash");
+
+            services[serviceHash.Value] = svc;
+        }
+
         while (true)
         {
             var client = listener.AcceptTcpClient();
             var endpoint = client.Client.RemoteEndPoint as IPEndPoint;
-            Console.WriteLine($"Client connected from {endpoint.Address}:{endpoint.Port}");
+            Console.WriteLine($"Client connected from {endpoint?.Address}:{endpoint.Port}");
 
             var networkStream = client.GetStream();
             var sslStream = new SslStream(networkStream, false);
 
             try
             {
-                // Authenticate the server using the server's certificate
                 sslStream.AuthenticateAsServer(serverCertificate, false, true);
 
                 Console.WriteLine("TLS handshake successful.");
@@ -60,71 +74,55 @@ Sec-WebSocket-Protocol: v1.rpc.battle.net
 
 ".ReplaceLineEndings("\r\n");
 
-                // Console.WriteLine(
-                //     $"respon: {BitConverter.ToString(Encoding.UTF8.GetBytes(switchProtocols))}");
                 sslStream.Write(Encoding.UTF8.GetBytes(switchProtocols));
                 sslStream.Flush();
                 Console.WriteLine("Switching protocols HTTP => WS(S)");
 
                 while (true)
                 {
-                    var data = WebSocketFrame.Read(sslStream);
+                    var frame = WebSocketFrame.Read(sslStream);
 
                     Console.WriteLine(
-                        $"Received {data.Length}  bytes from client: {BitConverter.ToString(data)}");
-                    var packet = new BgsPacket(data);
+                        $"Received {frame.Opcode} packet from client: {BitConverter.ToString(frame.Data)}");
+                    if (frame.Opcode == WebSocketFrame.OpCode.Close)
+                    {
+                        var closeReason = (WebSocketFrame.StatusCode)BitConverter.ToUInt16(frame.Data[..2].Reverse().ToArray());
+                        Console.WriteLine($"Closing connection with reason {closeReason}");
+                        break;
+                    }
+
+                    var packet = new BgsPacket(frame.Data);
                     Console.WriteLine(
                         $"BGS Packet: service=0x{packet.Header.ServiceHash:X} method={packet.Header.MethodId}");
 
-                    switch (packet.Header.ServiceHash)
+                    object? result;
+                    if (services.TryGetValue(packet.Header.ServiceHash, out var service))
+                        result = service.Dispatch(packet.Header.MethodId, packet.MessageData);
+                    else
+                        throw new Exception($"Unknown service: 0x{packet.Header.ServiceHash:X}");
+
+                    if (result != null)
                     {
-                        case 0x65446991:
-                        case 0x69BDBFEF:
-                            var unixTime = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
-                            switch (packet.Header.MethodId)
+                        var msgData = new MemoryStream();
+                        Serializer.Serialize(msgData, result);
+                        var newPacket = new BgsPacket
+                        {
+                            Header = new Header
                             {
-                                case 1:
-                                    var response = new ConnectResponse
-                                    {
-                                        ServerId = new ProcessId
-                                        {
-                                            Epoch = (uint)unixTime,
-                                            Label = (uint)Environment.ProcessId
-                                        },
-                                        ServerTime = (uint)DateTimeOffset.UtcNow.ToUnixTimeMilliseconds()
-                                    };
+                                ServiceId = 254,
+                                MethodId = packet.Header.MethodId,
+                                ServiceHash = packet.Header.ServiceHash
+                            },
+                            MessageData = msgData.ToArray()
+                        };
 
-                                    var msgData = new MemoryStream();
-                                    Serializer.Serialize(msgData, response);
-                                    var newPacket = new BgsPacket
-                                    {
-                                        Header = new Header
-                                        {
-                                            ServiceId = 254,
-                                            MethodId = 1,
-                                            ServiceHash = 0x65446991
-                                        },
-                                        MessageData = msgData.ToArray()
-                                    };
-
-                                    WebSocketFrame.Write(sslStream, newPacket.Serialize());
-
-                                    break;
-                                default:
-                                    Console.WriteLine($"Unknown service method {packet.Header.MethodId}");
-                                    break;
-                            }
-
-                            break;
-                        default:
-                            Console.WriteLine($"Unknown service hash: {packet.Header.ServiceHash:X}");
-                            break;
+                        WebSocketFrame.Write(sslStream, newPacket.Serialize());
                     }
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Exception: {ex.Message}");
+                Console.WriteLine($"Exception: {ex}");
             }
             finally
             {
