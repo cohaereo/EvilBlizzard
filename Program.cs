@@ -84,8 +84,11 @@ internal class Program
                         result = service.Dispatch(packet.Header.MethodId, packet.MessageData, context);
                     }
                     else
-                    {
-                        throw new Exception($"Unknown service hash=0x{packet.Header.ServiceHash:X} method={packet.Header.MethodId}");
+                    {               
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine($"Unknown service hash=0x{packet.Header.ServiceHash:X} method={packet.Header.MethodId}");
+                        Console.ResetColor();
+                        break;
                     }
 
                     if (result != null)

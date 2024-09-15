@@ -10,5 +10,5 @@ public class ChannelMembershipService : Service
     public NoData Subscribe(SubscribeRequest request)
     {
         return new NoData();
-                }
+    }
 }
